@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>微信小程序内嵌H5页面生成分享图片并下载的坑 | live威的个人博客_前端博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.需求最近传化产品大佬又在搞事情，在微信小程序内嵌H5的页面上实现分享搜索结果的功能，将车辆定位的搜索结果页生成图片并附带上二维码分享出去。我一听，这好说，不就是分享图片保存图片的功能么。 整理一下需求：点击分享定位按钮，弹出层，将当前搜索结果页面截图点击保存按钮，将图片保存到本地 2.方案根据需求，定了我的基本方案html -&amp;gt; canvas -&amp;gt; image -&amp;gt; a[do">
+<meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序内嵌H5页面生成分享图片并下载的坑">
+<meta property="og:url" content="https://thaneyang.github.io/2019/03/微信小程序内嵌H5页面生成分享图片并下载的坑.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="1.需求最近传化产品大佬又在搞事情，在微信小程序内嵌H5的页面上实现分享搜索结果的功能，将车辆定位的搜索结果页生成图片并附带上二维码分享出去。我一听，这好说，不就是分享图片保存图片的功能么。 整理一下需求：点击分享定位按钮，弹出层，将当前搜索结果页面截图点击保存按钮，将图片保存到本地 2.方案根据需求，定了我的基本方案html -&amp;gt; canvas -&amp;gt; image -&amp;gt; a[do">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-09T05:45:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序内嵌H5页面生成分享图片并下载的坑">
+<meta name="twitter:description" content="1.需求最近传化产品大佬又在搞事情，在微信小程序内嵌H5的页面上实现分享搜索结果的功能，将车辆定位的搜索结果页生成图片并附带上二维码分享出去。我一听，这好说，不就是分享图片保存图片的功能么。 整理一下需求：点击分享定位按钮，弹出层，将当前搜索结果页面截图点击保存按钮，将图片保存到本地 2.方案根据需求，定了我的基本方案html -&amp;gt; canvas -&amp;gt; image -&amp;gt; a[do">
+  
+    <link rel="alternate" href="/atom.xml" title="live威的个人博客_前端博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">live威的个人博客_前端博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">用文字书写思想，用代码改变世界</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://thaneyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信小程序内嵌H5页面生成分享图片并下载的坑" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/微信小程序内嵌H5页面生成分享图片并下载的坑.html" class="article-date">
+  <time datetime="2019-03-12T01:54:04.000Z" itemprop="datePublished">2019-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序内嵌H5页面生成分享图片并下载的坑
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-需求"><a href="#1-需求" class="headerlink" title="1.需求"></a>1.需求</h3><p>最近传化产品大佬又在搞事情，<br>在微信小程序内嵌H5的页面上实现分享搜索结果的功能，将车辆定位的搜索结果页生成图片并附带上二维码分享出去。我一听，这好说，不就是分享图片保存图片的功能么。</p>
+<p>整理一下需求：<br>点击分享定位按钮，弹出层，将当前搜索结果页面截图<br><br>点击保存按钮，将图片保存到本地<br></p>
+<h3 id="2-方案"><a href="#2-方案" class="headerlink" title="2.方案"></a>2.方案</h3><p>根据需求，定了我的基本方案<br>html -&gt; canvas -&gt; image -&gt; a[download]</p>
+<ul>
+<li>html2canvas.js：可将 htmldom 转为 canvas 元素。<a href="https://github.com/niklasvh/html2canvas" target="_blank" rel="noopener">传送门</a></li>
+<li>canvasAPI：toDataUrl() 可将 canvas 转为 base64 格式</li>
+<li>创建 a[download] 标签触发 click 事件实现下载</li>
+</ul>
+<h3 id="3-采坑表演"><a href="#3-采坑表演" class="headerlink" title="3.采坑表演"></a>3.采坑表演</h3><p>首先我们用到了html2canvas.js<br>根据官网介绍是通过js将DOM节点遍历一遍，然后基于DOM元素和样式来绘制canvas。有些样式可能无法理解，所以最后出来的结果有可能不大一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// v0.5.0</span><br><span class="line">html2canvas(element, options).then(canvas =&gt; &#123;</span><br><span class="line">    // 现在你已经拿到了canvas DOM元素    </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// v1.0.0</span><br><span class="line">html2canvas(element, &#123;...options&#125;).then(canvas =&gt; &#123;</span><br><span class="line">    // 现在你已经拿到了canvas DOM元素    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>基本流程大概是：</p>
+<ol>
+<li>递归遍历每个节点。</li>
+<li>考虑节点的层级问题。</li>
+<li>从底层开始画到canvas上。（跟浏览器本身的渲染很像）</li>
+</ol>
+<p>原先存在图片模糊的问题，在官方1.0版本上已经修复。<br>先获取设备像素比，并根据比例创建尺寸更大的 canvas。如二倍屏就是二倍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 根据window.devicePixelRatio获取像素比</span><br><span class="line"> */</span><br><span class="line">function DPR() &#123;</span><br><span class="line">    if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt; 1) &#123;</span><br><span class="line">        return window.devicePixelRatio;</span><br><span class="line">    &#125;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 绘制canvas</span><br><span class="line"> */</span><br><span class="line">async function drawCanvas(selector) &#123;</span><br><span class="line">    // 获取想要转换的 DOM 节点</span><br><span class="line">    const dom = document.querySelector(selector);</span><br><span class="line">    const box = window.getComputedStyle(dom);</span><br><span class="line">    // DOM 节点计算后宽高</span><br><span class="line">    const width = parseValue(box.width);</span><br><span class="line">    const height = parseValue(box.height);</span><br><span class="line">    // 获取像素比</span><br><span class="line">    const scaleBy = DPR();</span><br><span class="line">    // 创建自定义 canvas 元素</span><br><span class="line">    const canvas = document.createElement(&apos;canvas&apos;);</span><br><span class="line"></span><br><span class="line">    // 设定 canvas 元素属性宽高为 DOM 节点宽高 * 像素比</span><br><span class="line">    canvas.width = width * scaleBy;</span><br><span class="line">    canvas.height = height * scaleBy;</span><br><span class="line">    // 设定 canvas css宽高为 DOM 节点宽高</span><br><span class="line">    canvas.style.width = `$&#123;width&#125;px`;</span><br><span class="line">    canvas.style.height = `$&#123;height&#125;px`;</span><br><span class="line">    // 获取画笔</span><br><span class="line">    const context = canvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">    // 将所有绘制内容放大像素比倍</span><br><span class="line">    context.scale(scaleBy, scaleBy);</span><br><span class="line"></span><br><span class="line">    // 将自定义 canvas 作为配置项传入，开始绘制</span><br><span class="line">    return await html2canvas(dom, &#123;canvas&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-1生成的截图里面，地图显示不出来"><a href="#3-1生成的截图里面，地图显示不出来" class="headerlink" title="3.1生成的截图里面，地图显示不出来"></a>3.1生成的截图里面，地图显示不出来</h3><p>排查后发现是地图的图片跨域了，因为我们地图用的是百度地图，所以肯定跨域了。  </p>
+<p>canvas是可以绘制跨域的图片，但是此时的canvas是受到<strong>污染</strong>的，污染状态下的canvas是无法通过toDataUrl()来生成图片的。</p>
+<p>解决方案：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>尝试</th>
+<th>结局</th>
+<th>分析原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.jianshu.com/p/3f6fd4f6dd70" target="_blank" rel="noopener">方案一</a></td>
+<td>一般出现跨域, 只需要在图片设置这个属性: crossorigin=”anonymous”允许跨域即可</td>
+<td>惨败</td>
+<td>你设置crossOrigin=”anonymous”是表明你想跨域获取这张图片，好用在canvas.toDataURL()上，但是服务端不一定同意啊，服务端添加了access…这个字段并且value是*或者你网站的域名才行，否则就认为你无权用，结果就是无法显示</td>
+</tr>
+<tr>
+<td><a href="https://github.com/niklasvh/html2canvas/issues/1674" target="_blank" rel="noopener">方案二</a></td>
+<td>通过传入html2canvas的配置项中增加{ useCORS: true, useTainted: false }</td>
+<td>惨败</td>
+<td>看了下html2canvas源码，也是通过设置crossOrigin=”anonymous”来实现图片跨域，失败原因同上</td>
+</tr>
+<tr>
+<td>方案三</td>
+<td>前端写一个node中间层来进行服务器转发</td>
+<td>暂未尝试</td>
+<td>考虑百度地图的图片是实时变化加载的，获取具体跨域图片的url地址难度较大</td>
+</tr>
+<tr>
+<td>最终方案</td>
+<td>不用百度地图作为背景，改为用一张静态图片</td>
+<td>勉强交付 </td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2保存图片"><a href="#3-2保存图片" class="headerlink" title="3.2保存图片"></a>3.2保存图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 在本地进行文件保存</span><br><span class="line"> * @param  &#123;String&#125; data     要保存到本地的图片数据</span><br><span class="line"> * @param  &#123;String&#125; filename 文件名</span><br><span class="line"> */</span><br><span class="line">saveFile(data, filename) &#123;</span><br><span class="line">    const save_link = document.createElementNS(&apos;http://www.w3.org/1999/xhtml&apos;, &apos;a&apos;);</span><br><span class="line">    save_link.href = data;</span><br><span class="line">    save_link.download = filename;</span><br><span class="line"></span><br><span class="line">    const event = document.createEvent(&apos;MouseEvents&apos;);</span><br><span class="line">    event.initMouseEvent(&apos;click&apos;, true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);</span><br><span class="line">    save_link.dispatchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而微信点击之后，没反应…<br>然后就去翻微信的<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">jssdk</a></p>
+<ol>
+<li>下载图片接口downloadImage，仅支持由uploadImage接口上传的图片</li>
+<li>uploadImage接口，仅支持由chooseImage接口选择相册里的图片</li>
+<li>chooseImage接口，是从本地相册选择图片</li>
+<li>那么问题来了，图片都在相册了还需要我们干啥？</li>
+</ol>
+<h3 id="4-交付"><a href="#4-交付" class="headerlink" title="4.交付"></a>4.交付</h3><p>最终的妥协方案：</p>
+<ul>
+<li>用户搜索车辆定位，查询出结果</li>
+<li>点击分享按钮，页面出现一个弹出框，弹出框背景为一张本地静态地图的图片，弹出框上加上二维码以及搜索结果</li>
+<li>通过html2canvas，将当前弹框部分生成一张base64图片</li>
+<li>微信中用户可长按页面上的图片调起 actionSheet 识别或保存图片</li>
+</ul>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>因为第一次尝试在微信小程序内嵌H5的项目里做分享功能，所以需求阶段也不知道这个方案可不可行。一旦涉及到微信，就有可能出现一些之前考虑不到的问题和限制，所以，不管是产品经理还是程序员都要尽可能地多多了解。知道在微信中，能干什么，不能干什么，降低开发和反复沟通的成本。  </p>
+<p>希望以上内容能够对大家以后的开发有所帮助。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://thaneyang.github.io/2019/03/微信小程序内嵌H5页面生成分享图片并下载的坑.html" data-id="clfgaqry3000xq2jf4nm2d2ua" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/移动端适配问题.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          移动端适配问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/yeoman自定义脚手架使用心得.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">yeoman自定义脚手架使用心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/babel插件/">babel插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eslint/">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浙里办/">浙里办</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/babel插件/" style="font-size: 10px;">babel插件</a> <a href="/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/小程序/" style="font-size: 20px;">小程序</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/浙里办/" style="font-size: 10px;">浙里办</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/06/微信小程序认证与不认证的区别.html">微信小程序认证与不认证的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/为什么给js原型对象添加的方法能用在基本类型上？.html">为什么给js原型对象添加的方法能用在基本类型上？</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html">微信小程序转uniapp迁移步骤及遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/为什么在JavaScript里0-1-0-2不是等于0-3？.html">为什么在JavaScript里0.1 + 0.2不是等于0.3？</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/node-Selenium实现高级爬虫.html">node + Selenium实现高级爬虫</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 live威<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

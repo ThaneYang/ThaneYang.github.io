@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>微信小程序转uniapp迁移步骤及遇到的问题 | live威的个人博客_前端博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景公司有一个历史项目，是使用原生小程序开发的。最近客户提了需求，想要H5端也可以访问，为了节省时间和成本，所以最终决定迁移到uniapp，一套代码可以多端生成，这篇文章主要记录迁移的步骤和遇到的问题。 迁移步骤第一步：安装miniprogram-to-uniapp插件把微信小程序转成uni-app，推荐一款【miniprogram-to-uniapp】小程序转换工具插件 前提是先安装好nodej">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序转uniapp迁移步骤及遇到的问题">
+<meta property="og:url" content="https://thaneyang.github.io/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="背景公司有一个历史项目，是使用原生小程序开发的。最近客户提了需求，想要H5端也可以访问，为了节省时间和成本，所以最终决定迁移到uniapp，一套代码可以多端生成，这篇文章主要记录迁移的步骤和遇到的问题。 迁移步骤第一步：安装miniprogram-to-uniapp插件把微信小程序转成uni-app，推荐一款【miniprogram-to-uniapp】小程序转换工具插件 前提是先安装好nodej">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/QQ20230208-120201.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/QQ20230208-120337.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/QQ20230208-120808.png">
+<meta property="og:updated_time" content="2023-03-20T03:30:41.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序转uniapp迁移步骤及遇到的问题">
+<meta name="twitter:description" content="背景公司有一个历史项目，是使用原生小程序开发的。最近客户提了需求，想要H5端也可以访问，为了节省时间和成本，所以最终决定迁移到uniapp，一套代码可以多端生成，这篇文章主要记录迁移的步骤和遇到的问题。 迁移步骤第一步：安装miniprogram-to-uniapp插件把微信小程序转成uni-app，推荐一款【miniprogram-to-uniapp】小程序转换工具插件 前提是先安装好nodej">
+<meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/QQ20230208-120201.png">
+  
+    <link rel="alternate" href="/atom.xml" title="live威的个人博客_前端博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">live威的个人博客_前端博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">用文字书写思想，用代码改变世界</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://thaneyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信小程序转uniapp迁移步骤及遇到的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html" class="article-date">
+  <time datetime="2023-02-20T09:30:09.000Z" itemprop="datePublished">2023-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序转uniapp迁移步骤及遇到的问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>公司有一个历史项目，是使用原生小程序开发的。最近客户提了需求，想要H5端也可以访问，为了节省时间和成本，所以最终决定迁移到uniapp，一套代码可以多端生成，这篇文章主要记录迁移的步骤和遇到的问题。</p>
+<h3 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h3><h4 id="第一步：安装miniprogram-to-uniapp插件"><a href="#第一步：安装miniprogram-to-uniapp插件" class="headerlink" title="第一步：安装miniprogram-to-uniapp插件"></a>第一步：安装miniprogram-to-uniapp插件</h4><p>把微信小程序转成uni-app，推荐一款<strong>【miniprogram-to-uniapp】</strong>小程序转换工具插件</p>
+<p>前提是先安装好nodejs</p>
+<p>再执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install miniprogram-to-uniapp -g</span><br></pre></td></tr></table></figure>
+<p>因为这个包是工具，要求全局都能使用，所以需要-g进行全局安装。</p>
+<h4 id="第二步：查看是否安装成功"><a href="#第二步：查看是否安装成功" class="headerlink" title="第二步：查看是否安装成功"></a>第二步：查看是否安装成功</h4><p>在执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wtu -V</span><br></pre></td></tr></table></figure>
+<p><img src="http://yzwpic.weimayi.cn/img/QQ20230208-120201.png" alt="QQ20230208-120201"></p>
+<p>显示版本号，说明安装成功。</p>
+<h4 id="第三步：转换"><a href="#第三步：转换" class="headerlink" title="第三步：转换"></a>第三步：转换</h4><p>在命令行输入wtu -i “你的小程序项目路径”</p>
+<p>不知道路径的，可以先通过命令行进入项目</p>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
+<p><img src="http://yzwpic.weimayi.cn/img/QQ20230208-120337.png" alt="QQ20230208-120337"></p>
+<p>就能获取项目路径</p>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wtu -i /Users/yzw/asto-projects/atg-wx-app</span><br></pre></td></tr></table></figure>
+<p><img src="http://yzwpic.weimayi.cn/img/QQ20230208-120808.png" alt="QQ20230208-120808"></p>
+<h4 id="第四步：使用HBuilder-X运行转换后的项目"><a href="#第四步：使用HBuilder-X运行转换后的项目" class="headerlink" title="第四步：使用HBuilder X运行转换后的项目"></a>第四步：使用HBuilder X运行转换后的项目</h4><p>将转换后的项目导入到HBuilder X</p>
+<p>点击菜单 运行-&gt;运行到小程序模拟器-&gt;微信开发者工具</p>
+<p>查看运行之后的小程序，是否正常显示</p>
+<h4 id="第五步：调试修改"><a href="#第五步：调试修改" class="headerlink" title="第五步：调试修改"></a>第五步：调试修改</h4><p>运行项目，如果有报错信息，解决报错的问题</p>
+<h4 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h4><p>1、删除 const app = getApp();</p>
+<p>2、以 wx. 开头的方法更新为 uni. 开头</p>
+<p>3、数据绑定 this.setData({ a : 1 }) 更新为 this.a = 1</p>
+<p>4、路由跳转 wx.navigateTo() 更新为uni.navigateTo()</p>
+<p>5、属性绑定从</p>
+<p>attr=”“，改为 :attr=”a”</p>
+<p>title=”复选框“ 改为 :title=”‘复选框’ + item”</p>
+<p>6、事件绑定从 bind:click=”toggleActionSheet1” 改为 @click=”toggleActionSheet1”</p>
+<p>7、阻止事件冒泡 从 catch:tap=”xx” 改为 @tap.native.stop=”xx”</p>
+<p>8、wx:if 改为 v-if</p>
+<p>9、wx:for=”“ wx:key=”“ 改为`v-for=”(item,index) in list”</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://thaneyang.github.io/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html" data-id="clfgaqry2000vq2jfd7t1cvg0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/为什么给js原型对象添加的方法能用在基本类型上？.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          为什么给js原型对象添加的方法能用在基本类型上？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/为什么在JavaScript里0-1-0-2不是等于0-3？.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">为什么在JavaScript里0.1 + 0.2不是等于0.3？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/babel插件/">babel插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eslint/">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浙里办/">浙里办</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/babel插件/" style="font-size: 10px;">babel插件</a> <a href="/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/小程序/" style="font-size: 20px;">小程序</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/浙里办/" style="font-size: 10px;">浙里办</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/06/微信小程序认证与不认证的区别.html">微信小程序认证与不认证的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2023/05/为什么给js原型对象添加的方法能用在基本类型上？.html">为什么给js原型对象添加的方法能用在基本类型上？</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html">微信小程序转uniapp迁移步骤及遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/为什么在JavaScript里0-1-0-2不是等于0-3？.html">为什么在JavaScript里0.1 + 0.2不是等于0.3？</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/node-Selenium实现高级爬虫.html">node + Selenium实现高级爬虫</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 live威<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

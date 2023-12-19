@@ -1,97 +1,280 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
 
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>记一次http缓存优化 | live威的个人博客_前端博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。 第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。 第二部分是响应头，是服务器端返回的。 第三部分是请求头，是客户端发起的。 这次我们从两个角度来看看http的缓存：缓存控制和缓存校验。 缓存控制：控制缓存的开关，">
-<meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。 第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。 第二部分是响应头，是服务器端返回的。 第三部分是请求头，是客户端发起的。 这次我们从两个角度来看看http的缓存：缓存控制和缓存校验。 缓存控制：控制缓存的开关，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次http缓存优化">
-<meta property="og:url" content="https://thaneyang.github.io/2021/05/记一次http缓存优化.html">
+<meta property="og:url" content="https://thaneyang.github.io/2021/05/%E8%AE%B0%E4%B8%80%E6%AC%A1http%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96.html">
 <meta property="og:site_name" content="live威的个人博客_前端博客">
 <meta property="og:description" content="我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。 第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。 第二部分是响应头，是服务器端返回的。 第三部分是请求头，是客户端发起的。 这次我们从两个角度来看看http的缓存：缓存控制和缓存校验。 缓存控制：控制缓存的开关，">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-02-08T06:33:42.560Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次http缓存优化">
-<meta name="twitter:description" content="我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。 第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。 第二部分是响应头，是服务器端返回的。 第三部分是请求头，是客户端发起的。 这次我们从两个角度来看看http的缓存：缓存控制和缓存校验。 缓存控制：控制缓存的开关，">
-  
-    <link rel="alternate" href="/atom.xml" title="live威的个人博客_前端博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-15T03:42:19.000Z">
+<meta property="article:modified_time" content="2023-02-08T06:33:42.560Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">live威的个人博客_前端博客</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">用文字书写思想，用代码改变世界</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://thaneyang.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-记一次http缓存优化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/05/记一次http缓存优化.html" class="article-date">
-  <time datetime="2021-05-15T03:42:19.000Z" itemprop="datePublished">2021-05-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <title>记一次http缓存优化 - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <h1 class="article-title" itemprop="name">
-      记一次http缓存优化
-    </h1>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-      </header>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="记一次http缓存优化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-15 11:42" pubdate>
+          2021年5月15日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
       
-        <p>我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">记一次http缓存优化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。</p>
 <p>第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。</p>
 <p>第二部分是响应头，是服务器端返回的。</p>
 <p>第三部分是请求头，是客户端发起的。</p>
@@ -107,8 +290,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>public</td>
 <td>http 请求返回的过程当中，在 cache-control 中设置这个值，代表 http 请求返回的内容所经过的任何路径当中（包括中间一些http代理服务器以及发出请求的客户端浏览器），都可以对返回内容进行缓存操作。</td>
 </tr>
@@ -120,8 +302,7 @@
 <td>no-cache</td>
 <td>可以在本地进行缓存，但每次发请求时，都要向服务器进行验证，如果服务器允许，才能使用本地缓存。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>到期</p>
 <table>
 <thead>
@@ -130,21 +311,19 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>max-age=</td>
+<tbody><tr>
+<td>max-age&#x3D;</td>
 <td>缓存多少秒后过期，过期之后浏览器才会再次发送请求。</td>
 </tr>
 <tr>
-<td>s-maxage=</td>
+<td>s-maxage&#x3D;</td>
 <td>浏览器基本用不到，会代替 max-age，但只有在代理服务器中才会生效。在代理服务器中，如果都设置了 max-age，s-maxage，还是会读取 s-maxage。</td>
 </tr>
 <tr>
-<td>max-stale=</td>
+<td>max-stale&#x3D;</td>
 <td>浏览器基本用不到，当 max-age 过期后，如果返回资源中有 max-stale 的设置。max-stale 是发起请求方主动携带的头，即使 max-age 过期，只要 max-stale 没过期，可以继续使用缓存资源，不需要重新请求。浏览器主动设置这个头，只有在发起端才有用。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>重新验证</p>
 <table>
 <thead>
@@ -153,8 +332,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>must-revalidate</td>
 <td>浏览器可能会用到，如果 max-age 过期，需要重新发送请求，获取这部分数据，再来验证数据是否真的过期，而不能直接使用本地缓存。</td>
 </tr>
@@ -162,8 +340,7 @@
 <td>proxy-revalidate</td>
 <td>用在缓存服务器中，指定缓存服务器过期后，必须向源服务器重新请求，不能直接使用本地缓存。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>其他</p>
 <table>
 <thead>
@@ -172,8 +349,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>no-store</td>
 <td>本地和代理服务器都不可以存储缓存，每次都要重新请求，拿到内容。</td>
 </tr>
@@ -181,8 +357,7 @@
 <td>no-transform</td>
 <td>主要是用在 proxy 服务器，不允许进行格式转换。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><p>通过 Cache-Control 以及 max-age 设置，达到长缓存的效果。</p>
 <p>启动服务器 node server.js，在 localhost:8888 打开，查看network，当设置 max-age 后，刷新页面，浏览器直接从缓存中进行读取，不去要再向服务器请求，达到缓存静态资源的目的。</p>
 <p>存在的问题，服务端修改返回内容，客户端没有加载新的内容，因为请求 url 没变，浏览器会直接从缓存读取，不需要经过服务端验证，导致静态资源更新后，没有及时更新到客户端。</p>
@@ -197,151 +372,359 @@
 <p>这时 response 中是有内容的，这里希望服务器不返回实际的内容，只需要告诉浏览器直接读取缓存即可。通过在服务器端进行判断。</p>
 <p>这时查看 respones 发现还是有内容，这个内容是 Chrome 浏览器 从缓存中读取显示出来的，服务器没有返回内容。</p>
 <p>如何判断服务端通过验证，但是从缓存读取的呢，通过服务器设置 HTTP Code 304，Not Modified 表示资源没有修改，直接读缓存，这时就会忽略服务端返回的内容。</p>
-<h3 id="清除小程序webview缓存"><a href="#清除小程序webview缓存" class="headerlink" title="清除小程序webview缓存"></a>清除小程序webview缓存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-view src=&quot;&#123;&#123;fomalUrl&#125;&#125;&gt;&lt;/web-view&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="清除小程序webview缓存"><a href="#清除小程序webview缓存" class="headerlink" title="清除小程序webview缓存"></a>清除小程序webview缓存</h3><figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">web-view</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">fomalUrl</span>&#125;&#125;</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&gt;&lt;/web-view&gt;</span></span></span><br></code></pre></td></tr></table></figure>
+
 <p>由于webview跳到h5界面是单页面应用</p>
 <ol>
 <li>按照网上的办法给跳转路径后面加时间戳，并没有什么用。。。</li>
 <li>在测试和正式环境打包的时候，给css js加hash，也没什么用</li>
 </ol>
 <p>解决办法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;META HTTP-EQUIV=&quot;pragma&quot; CONTENT=&quot;no-cache&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;META HTTP-EQUIV=&quot;Cache-Control&quot; CONTENT=&quot;no-cache, must-revalidate&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;META HTTP-EQUIV=&quot;expires&quot; CONTENT=&quot;0&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;META <span class="hljs-attribute">HTTP-EQUIV</span>=<span class="hljs-string">&quot;pragma&quot;</span> <span class="hljs-attribute">CONTENT</span>=<span class="hljs-string">&quot;no-cache&quot;</span>&gt;<br><br>&lt;META <span class="hljs-attribute">HTTP-EQUIV</span>=<span class="hljs-string">&quot;Cache-Control&quot;</span> <span class="hljs-attribute">CONTENT</span>=<span class="hljs-string">&quot;no-cache, must-revalidate&quot;</span>&gt;<br><br>&lt;META <span class="hljs-attribute">HTTP-EQUIV</span>=<span class="hljs-string">&quot;expires&quot;</span> <span class="hljs-attribute">CONTENT</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
 <p>在根目录的index.html头部加上上面几句就可以清除缓存了</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/lguow/p/10620940.html" target="_blank" rel="noopener">前端性能优化 —— 添加Expires头与Cache-control区别</a></p>
-<p><a href="https://blog.csdn.net/u012375924/article/details/82806617" target="_blank" rel="noopener">浅谈http中的Cache-Control</a></p>
-<p><a href="https://blog.csdn.net/guozhiyingguo/article/details/53113860" target="_blank" rel="noopener">http请求头If-Modified-Since &amp; If-None-Match</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lguow/p/10620940.html">前端性能优化 —— 添加Expires头与Cache-control区别</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012375924/article/details/82806617">浅谈http中的Cache-Control</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guozhiyingguo/article/details/53113860">http请求头If-Modified-Since &amp; If-None-Match</a></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>记一次http缓存优化</div>
+      <div>https://thaneyang.github.io/2021/05/记一次http缓存优化.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年5月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://thaneyang.github.io/2021/05/记一次http缓存优化.html" data-id="clfgaqryd001bq2jf8vumylsx" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    <div class="license-icon iconfont"></div>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/06/babel插件之去掉debugger和console.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          babel插件之去掉debugger和console
-        
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/babel%E6%8F%92%E4%BB%B6%E4%B9%8B%E5%8E%BB%E6%8E%89debugger%E5%92%8Cconsole.html" title="babel插件之去掉debugger和console">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">babel插件之去掉debugger和console</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/vscode%E9%80%9A%E8%BF%87snipptes%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A9%BA%E7%99%BD%E6%A8%A1%E6%9D%BF%E9%A1%B5.html" title="vscode通过snipptes，快速生成uniapp小程序空白模板页">
+                        <span class="hidden-mobile">vscode通过snipptes，快速生成uniapp小程序空白模板页</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2021/04/vscode通过snipptes，快速生成uniapp小程序空白模板页.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vscode通过snipptes，快速生成uniapp小程序空白模板页</div>
-    </a>
-  
-</nav>
+    </div>
 
-  
-</article>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/babel插件/">babel插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eslint/">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浙里办/">浙里办</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a></li></ul>
+
+  </aside>
+
+
     </div>
   </div>
+</div>
+
+
+
 
 
   
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/babel插件/" style="font-size: 10px;">babel插件</a> <a href="/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/小程序/" style="font-size: 20px;">小程序</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/浙里办/" style="font-size: 10px;">浙里办</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a>
-    </div>
-  </div>
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/06/微信小程序认证与不认证的区别.html">微信小程序认证与不认证的区别</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/为什么给js原型对象添加的方法能用在基本类型上？.html">为什么给js原型对象添加的方法能用在基本类型上？</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html">微信小程序转uniapp迁移步骤及遇到的问题</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/为什么在JavaScript里0-1-0-2不是等于0-3？.html">为什么在JavaScript里0.1 + 0.2不是等于0.3？</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/node-Selenium实现高级爬虫.html">node + Selenium实现高级爬虫</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2023 live威<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
-<script src="/js/script.js"></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
 
-  </div>
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

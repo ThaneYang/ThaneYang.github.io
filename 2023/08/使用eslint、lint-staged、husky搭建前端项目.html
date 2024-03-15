@@ -14,7 +14,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="ThaneYang">
-  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,小程序,团队管理,感悟心得">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,小程序,团队管理,项目管理,心得体会">
   
     <meta name="description" content="随着前端开发的项目越来越复杂，参与人数越来越多，创建一个统一风格的、规范化的项目对于一个团队来说至关重要。因此前端项目，需要包括eslint校验、prettier代码优化、husky+lint-staged代码提交校验。 项目搭建新建 vangle 项目cd vangle 进入项目 初始化 package.json 文件 1pnpm init  没安装 pnpm 的需要提前安装一下 1npm i">
 <meta property="og:type" content="article">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="随着前端开发的项目越来越复杂，参与人数越来越多，创建一个统一风格的、规范化的项目对于一个团队来说至关重要。因此前端项目，需要包括eslint校验、prettier代码优化、husky+lint-staged代码提交校验。 项目搭建新建 vangle 项目cd vangle 进入项目 初始化 package.json 文件 1pnpm init  没安装 pnpm 的需要提前安装一下 1npm i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-18T01:44:09.000Z">
-<meta property="article:modified_time" content="2023-12-19T07:21:08.343Z">
+<meta property="article:modified_time" content="2023-12-29T08:41:10.964Z">
 <meta property="article:author" content="ThaneYang">
 <meta property="article:tag" content="前端开发">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          5.6k 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          37 分钟
+          47 分钟
         
       </span>
     
@@ -365,6 +365,15 @@
 <p>如果提交的时候eslint报错，但又想提交，则执行</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">git</span> commit -m <span class="hljs-string">&#x27;提交&#x27;</span> --<span class="hljs-literal">no</span>-verify<br></code></pre></td></tr></table></figure>
 
+
+
+<h4 id="prettier配合vscode使用"><a href="#prettier配合vscode使用" class="headerlink" title="prettier配合vscode使用"></a>prettier配合vscode使用</h4><p>ctrl+shift+p打开，setting.json文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs json">  <span class="hljs-comment">//设置vetur默认html代码格式化风格</span><br>  <span class="hljs-attr">&quot;vetur.format.defaultFormatter.html&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;prettier&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-comment">// 为ESLint启用“保存时自动修复”，并且仍然具有格式和快速修复功能</span><br>  <span class="hljs-attr">&quot;editor.codeActionsOnSave&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;source.fixAll&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;source.fixAll.eslint&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;eslint.enable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;eslint.options&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;extensions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-string">&quot;.js&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;.vue&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;.ts&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;.tsx&quot;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><span class="hljs-comment">//保存的时候格式化代码</span><br>  <span class="hljs-attr">&quot;editor.formatOnSave&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;eslint.validate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">&quot;vue&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;html&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;javascript&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;typescript&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;javascriptreact&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;typescriptreact&quot;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br><br></code></pre></td></tr></table></figure>
+
+<p>重启vscode，之后每次保存页面，都会使用项目中的prettier规则来格式化页面代码</p>
+<p><strong>自动保存是分为两步的：</strong><br><strong>第一步是eslint自动修复js代码；</strong><br><strong>第二步是prettier格式化html+css代码和部分js代码，而在这个时候prettier格式化js代码会和eslint规则有冲突，这个时候eslint-config-prettier依赖会让以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效；</strong></p>
+<p><strong>问题：</strong><br>已经有eslint规则，为什么还要单独去写prettier规则？<br>因为eslint规则只是针对于js代码，prettier规则是对于大部分代码格式化都有用的，vetur插件中自带prettier规范，对于prettier如果不想配置，直接在setting.json文件中加入：”vetur.format.defaultFormatter.js”: “none”即可（主要是使vetur对js代码格式化失效）</p>
+<p>哪些代码是可以自动修复的？<br>空格，双引号这些格式的代码是可以自动修复的，代码规范报错会提示到具体代码，手动修改</p>
 
                 
               </div>

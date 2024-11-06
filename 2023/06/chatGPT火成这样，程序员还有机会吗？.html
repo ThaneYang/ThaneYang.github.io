@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="看看最近很火的：   这恐怕连设计师都还取代不了！ 数据的准确性如果你真的有经常使用 chatGPT，你会发现，它其实并不是每次都能给到你想要的答案，而且偶尔还是错误的答案。所以，它本身就有一个致命的问题：准确率！  ChatGPT 是一个大规模的语言模型，不断地训练以提高响应的准确性。然而，由于这是一项全新的技术，该模型尚未经过充分的训练。因此，人工智能聊天机器人可能会提供错误的答案。正因为如此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chatGPT火成这样，程序员还有机会吗？">
+<meta property="og:url" content="https://thaneyang.github.io/2023/06/chatGPT%E7%81%AB%E6%88%90%E8%BF%99%E6%A0%B7%EF%BC%8C%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%98%E6%9C%89%E6%9C%BA%E4%BC%9A%E5%90%97%EF%BC%9F.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="看看最近很火的：   这恐怕连设计师都还取代不了！ 数据的准确性如果你真的有经常使用 chatGPT，你会发现，它其实并不是每次都能给到你想要的答案，而且偶尔还是错误的答案。所以，它本身就有一个致命的问题：准确率！  ChatGPT 是一个大规模的语言模型，不断地训练以提高响应的准确性。然而，由于这是一项全新的技术，该模型尚未经过充分的训练。因此，人工智能聊天机器人可能会提供错误的答案。正因为如此">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/image-20230410095721615.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/image-20230410095751641.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/image-20240701163559691.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/image-20240701163624186.png">
+<meta property="article:published_time" content="2023-06-18T08:22:03.000Z">
+<meta property="article:modified_time" content="2024-07-01T09:31:32.456Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="chatgpt">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/image-20230410095721615.png">
+  
+  
+  
+  <title>chatGPT火成这样，程序员还有机会吗？ - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="chatGPT火成这样，程序员还有机会吗？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-18 16:22" pubdate>
+          2023年6月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">chatGPT火成这样，程序员还有机会吗？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>看看最近很火的：</p>
+<p><img src="http://yzwpic.weimayi.cn/img/image-20230410095721615.png" srcset="/img/loading.gif" lazyload alt="image-20230410095721615"></p>
+<p><img src="http://yzwpic.weimayi.cn/img/image-20230410095751641.png" srcset="/img/loading.gif" lazyload alt="image-20230410095751641"></p>
+<p>这恐怕连设计师都还取代不了！</p>
+<h3 id="数据的准确性"><a href="#数据的准确性" class="headerlink" title="数据的准确性"></a>数据的准确性</h3><p>如果你真的有经常使用 <code>chatGPT</code>，你会发现，它其实并不是每次都能给到你想要的答案，而且偶尔还是错误的答案。所以，它本身就有一个致命的问题：准确率！</p>
+<blockquote>
+<p>ChatGPT 是一个大规模的语言模型，不断地训练以提高响应的准确性。然而，由于这是一项全新的技术，该模型尚未经过充分的训练。因此，人工智能聊天机器人可能会提供错误的答案。正因为如此，StackOverflow 禁止了 ChatGPT，并表示：“总的来说，由于从 ChatGPT 获得正确答案的平均比率太低，发布由 ChatGPT 生成的答案对我们的网站以及询问或搜索正确答案的用户来说是非常有害的。”</p>
+</blockquote>
+<p>比如，将医疗APP接入chatGPT，无法保证这个24小时机器人不会给病人开错药。比如将感冒错误地诊断为新冠</p>
+<h3 id="代码调试"><a href="#代码调试" class="headerlink" title="代码调试"></a>代码调试</h3><p>没有程序员敢说自己的代码不需要经过联调、测试，直接上生产的。</p>
+<p>在你充分给足问题上下文的前提下，你让 chatGPT 生成一个几十行的代码 snippet，它大多数情况下会给你一个不需要太多修改的答案。但是，这和直接上生产的应用程序之间还是存在较大差异的。尤其当工程比较复杂，即使chatGPT的准确率很高，在巨大的代码量和文件之间错综复杂的引用关系下，bug的数量也不容小觑，依然需要经验丰富的工程师来调试。</p>
+<h3 id="需求理解"><a href="#需求理解" class="headerlink" title="需求理解"></a>需求理解</h3><p>某一天，产品说，我们需要做一个新功能：<strong>做一个会根据手机壳颜色而改变主题颜色的APP！</strong></p>
+<p><img src="http://yzwpic.weimayi.cn/img/image-20240701163559691.png" srcset="/img/loading.gif" lazyload alt="image-20240701163559691"></p>
+<p>于是，你把这一句话需求输入到 <code>chatGPT</code>，满心欢喜地等待答案：</p>
+<p><img src="http://yzwpic.weimayi.cn/img/image-20240701163624186.png" srcset="/img/loading.gif" lazyload alt="image-20240701163624186"></p>
+<p>chatGPT给出的代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Change Theme Color Based on Phone Case<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">      <span class="hljs-selector-pseudo">:root</span> &#123;</span><br><span class="language-css">        <span class="hljs-attr">--color-theme</span>: <span class="hljs-number">#333</span>; <span class="hljs-comment">/* default theme color */</span></span><br><span class="language-css">      &#125;</span><br><span class="language-css">      </span><br><span class="language-css">      <span class="hljs-selector-tag">body</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-theme);</span><br><span class="language-css">        <span class="hljs-attribute">color</span>: white;</span><br><span class="language-css">      &#125;</span><br><span class="language-css">      </span><br><span class="language-css">      <span class="hljs-selector-class">.button</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--color-theme);</span><br><span class="language-css">        <span class="hljs-attribute">color</span>: white;</span><br><span class="language-css">        <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;</span><br><span class="language-css">        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0.5rem</span>;</span><br><span class="language-css">        <span class="hljs-attribute">text-align</span>: center;</span><br><span class="language-css">      &#125;</span><br><span class="language-css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Change Theme Color Based on Phone Case<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This app will change its theme color based on the color of your phone case!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>Click me!<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">      <span class="hljs-comment">// Detect phone case color and set it as theme color</span></span><br><span class="language-javascript">      <span class="hljs-keyword">var</span> phoneCaseColor = <span class="hljs-string">&quot;red&quot;</span>; <span class="hljs-comment">// Replace with code to detect phone case color</span></span><br><span class="language-javascript">      <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-title function_">setProperty</span>(<span class="hljs-string">&#x27;--color-theme&#x27;</span>, phoneCaseColor);</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>显然，没有根本没有理解产品提出的需求！所以说它短时间内是干不掉开发的！</p>
+<h3 id="沟通需要人"><a href="#沟通需要人" class="headerlink" title="沟通需要人"></a>沟通需要人</h3><p>一个软件的开发通常都不只有开发，大致的流程：</p>
+<ol>
+<li>调研（需求收集）</li>
+<li>项目立项</li>
+<li>需求整理（出PRD）</li>
+<li>UI、UE</li>
+<li>RD、QA、UE、UI做需求评审</li>
+<li>RD做架构设计、技术调研，UE做交互设计、QA做测试用例</li>
+<li>RD、UE、UI、QA评审，排期</li>
+<li>开发、联调、测试</li>
+<li>产品验收</li>
+<li>上线准备</li>
+<li>灰度</li>
+<li>上线</li>
+<li>…</li>
+</ol>
+<p>从第5点开始，就要开发参与做大量的沟通和协调。</p>
+<p><code>coding</code>只是其中一小环，开发需要深入了解业务需求，做技术调研和预判，才能决定如何编写代码。</p>
+<p>你想从<code>chatGPT</code>那里获得正确的回答，首先你要知道如何问问题，问哪些问题。这些都只有人能做。</p>
+<h3 id="chatGPT-会怎样改变我们？"><a href="#chatGPT-会怎样改变我们？" class="headerlink" title="chatGPT 会怎样改变我们？"></a>chatGPT 会怎样改变我们？</h3><p>我认为主要会在以下几个方面改变我们：</p>
+<p><strong>改进&#x2F;重构&#x2F;简化现有代码</strong>：使用 <code>ChatGPT</code> 改进、重构甚至简化现有代码。</p>
+<p><strong>将代码从一种语言翻译成另一种语言</strong>：例如，你可以要求 <code>ChatGPT</code> 将代码从<code> python</code> 翻译成 <code>javascript</code> 或者 <code>go</code>。</p>
+<p><strong>写测试</strong>：让 <code>ChatGPT</code> 帮你测试一个功能，它会帮你写测试用例。</p>
+<p><strong>探索替代方案</strong>：<code>ChatGPT</code> 非常擅长建议替代实施方案，尽管有时答案并不那么完美，改改也是能用的。</p>
+<p><strong>编写文档</strong>：<code>ChatGPT</code> 可以为小块代码编写文档。</p>
+<p><strong>查找错误</strong>：如果您认为自己的代码中存在错误并且找不到它，<code>ChatGPT</code> 可能会有所帮助。</p>
+<h3 id="辅助而不是取代"><a href="#辅助而不是取代" class="headerlink" title="辅助而不是取代"></a>辅助而不是取代</h3><p>最有可能的情况是像 <code>chatGPT</code> 这样的工具会被集成到开发者使用的工具中，并被用来辅助开发人员，让他们从一些重复性的工作中解脱出来，去做一些更有价值的工作。<code>ChatGPT</code> 不太可能取代程序员。</p>
+<p>编程需要一套独特的技能，例如逻辑、解决问题和对编程语言的理解，这些是 <code>ChatGPT</code> 所不具备的。虽然它可以帮助程序员完成代码生成等任务，但它不能完全取代人类程序员所拥有的创造力、解决问题和批判性思维的能力。程序员在软件、网站和其他技术产品的开发中发挥着关键作用，他们的专业知识对于设计和创建这些产品至关重要。</p>
+<p>还有一种观点是，那我们可能不需要那么多程序员了。我觉得也不一定，这需要取决于经济社会的发展情况，如果 chatGPT 真的引发一场新的科技革命，不知道有多少应用或者说服务将被重写，又有多少新的需求将被催生，替代程序员又从何谈起呢。</p>
+<p>但是，如果你的工作只是编写复杂性很小的基本代码块，那么你可能比较危险了。特别是那种入行只是为了混口饭吃，平时也不注意提升自己，随着时间的推移就很有可能被优化了。以后的工作模式，可能就是软件开发人员和人工智能工具组合进行开发，人工智能可以起到很好的辅助作用。</p>
+<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>虽然chatGPT短期内还无法取代程序员。但技术发展日新月异，未来不知道人工智能会发展到什么地步。所以程序员还是要尽可能的多提升自己，增加自己的核心竞争力，不单单是编程能力，还包括沟通能力、逻辑思维能力、解决问题的能力等等。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/chatgpt/">#chatgpt</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>chatGPT火成这样，程序员还有机会吗？</div>
+      <div>https://thaneyang.github.io/2023/06/chatGPT火成这样，程序员还有机会吗？.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86.html" title="时间管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">时间管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%AE%A4%E8%AF%81%E4%B8%8E%E4%B8%8D%E8%AE%A4%E8%AF%81%E7%9A%84%E5%8C%BA%E5%88%AB.html" title="微信小程序认证与不认证的区别">
+                        <span class="hidden-mobile">微信小程序认证与不认证的区别</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

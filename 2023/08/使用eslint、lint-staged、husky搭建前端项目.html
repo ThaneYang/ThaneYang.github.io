@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="随着前端开发的项目越来越复杂，参与人数越来越多，创建一个统一风格的、规范化的项目对于一个团队来说至关重要。因此前端项目，需要包括eslint校验、prettier代码优化、husky+lint-staged代码提交校验。 项目搭建新建 vangle 项目cd vangle 进入项目 初始化 package.json 文件 1pnpm init  没安装 pnpm 的需要提前安装一下 12npm i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用eslint、lint-staged、husky搭建前端项目">
+<meta property="og:url" content="https://thaneyang.github.io/2023/08/%E4%BD%BF%E7%94%A8eslint%E3%80%81lint-staged%E3%80%81husky%E6%90%AD%E5%BB%BA%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="随着前端开发的项目越来越复杂，参与人数越来越多，创建一个统一风格的、规范化的项目对于一个团队来说至关重要。因此前端项目，需要包括eslint校验、prettier代码优化、husky+lint-staged代码提交校验。 项目搭建新建 vangle 项目cd vangle 进入项目 初始化 package.json 文件 1pnpm init  没安装 pnpm 的需要提前安装一下 12npm i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-16T01:11:36.000Z">
+<meta property="article:modified_time" content="2024-07-01T09:14:07.911Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="前端开发">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>使用eslint、lint-staged、husky搭建前端项目 - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用eslint、lint-staged、husky搭建前端项目"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-16 09:11" pubdate>
+          2023年8月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">使用eslint、lint-staged、husky搭建前端项目</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>随着前端开发的项目越来越复杂，参与人数越来越多，创建一个统一风格的、规范化的项目对于一个团队来说至关重要。因此前端项目，需要包括eslint校验、prettier代码优化、husky+lint-staged代码提交校验。</p>
+<h3 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h3><p>新建 vangle 项目<br>cd vangle 进入项目</p>
+<p>初始化 package.json 文件</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">pnpm <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure>
+
+<p>没安装 pnpm 的需要提前安装一下</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i pnpm -g<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>新建 packages 目录，里面存放我们要开发的项目，例如 components、cli 等</li>
+<li>创建 pnpm-workspace.yaml 文件，并指定 packages</li>
+</ul>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nestedtext"><span class="hljs-comment"># pnpm-workspace.yaml</span><br><span class="hljs-attribute">packages</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;packages/*&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 typescript 并初始化 tsconfig.json 文件</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta"># -w 表示在要把包下载到根目录</span><br>pnpm <span class="hljs-keyword">add</span> typescript -D -w<br>npx tsc --<span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure>
+
+<p>参考配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;compilerOptions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;baseUrl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;.&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;es2016&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;sourceMap&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;module&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;esnext&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;esModuleInterop&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;strict&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;jsx&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;preserve&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;types&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;node&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;rootDir&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;.&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="添加代码规范"><a href="#添加代码规范" class="headerlink" title="添加代码规范"></a>添加代码规范</h3><h4 id="prettier"><a href="#prettier" class="headerlink" title="prettier"></a>prettier</h4><p><code>Prettier</code>是一个固执己见（提供了一份自认为是合适大多数人的代码风格）的代码格式化程序。</p>
+<p>它支持的代码如下：</p>
+<ul>
+<li>JavaScript</li>
+<li>JSX</li>
+<li>Angular</li>
+<li>Vue</li>
+<li>Flow</li>
+<li>TypeScript</li>
+<li>CSS, Less, and SCSS</li>
+<li>HTML</li>
+<li>Ember&#x2F;Handlebars</li>
+<li>JSON</li>
+<li>GraphQL</li>
+<li>Markdown, 包括 GFM 和 MDX</li>
+<li>YAML</li>
+</ul>
+<p><code>Prettier</code>相比于<code>ESLint/TSLint/stylelint</code>等工具对代码风格控制等更加细致。因此通常用<code>Prettier</code>来让代码更漂亮，用<code>linter</code>来捕捉代码语法上的错误。</p>
+<p>安装依赖</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">pnpm <span class="hljs-built_in">add</span> prettier -D -w<br></code></pre></td></tr></table></figure>
+
+<p>根目录创建 .prettierrc.js</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">module.exports</span> <span class="hljs-string">=</span> &#123;<br>  <span class="hljs-attr">semi:</span> <span class="hljs-literal">false</span>,<br>  <span class="hljs-attr">singleQuote:</span> <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">printWidth:</span> <span class="hljs-number">80</span>,<br>  <span class="hljs-attr">trailingComma:</span> <span class="hljs-string">&#x27;none&#x27;</span>,<br>  <span class="hljs-attr">arrowParens:</span> <span class="hljs-string">&#x27;avoid&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h4><p><code>ESLint</code> 是一个根据方案识别并报告 <code>ECMAScript/JavaScript</code>代码问题的工具，其目的是使代码风格更加一致并避免错误。</p>
+<ul>
+<li>ESLint 使用 <code>Espree</code> 对 <code>JavaScript</code> 进行解析。</li>
+<li>ESLint 在代码中使用 <code>AST</code> 评估方案。</li>
+<li>ESLint 完全是插件式的，每个规则都是一个插件，你可以在运行时中添加更多插件。</li>
+</ul>
+<p>安装依赖</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">pnpm <span class="hljs-keyword">add</span><span class="language-bash"> eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin -D -w</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="配合-prettier"><a href="#配合-prettier" class="headerlink" title="配合 prettier"></a>配合 prettier</h5><p>当 ESLint 的规则和 Prettier 的规则相冲突时，就会发现一个尴尬的问题，用其中一种来格式化代码，另一种就会报错。prettier 官方提供了一款工具 eslint-config-prettier 来解决这个问题，本质上这个工具其实就是禁用掉了一些不必要的以及和 Prettier 相冲突的 ESLint 规则。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">pnpm <span class="hljs-keyword">add </span>eslint-<span class="hljs-built_in">config</span>-prettier eslint-plugin-prettier -D -w<br></code></pre></td></tr></table></figure>
+
+<h5 id="完成eslint配置"><a href="#完成eslint配置" class="headerlink" title="完成eslint配置"></a>完成eslint配置</h5><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">yarn eslint <span class="hljs-comment">--init</span><br></code></pre></td></tr></table></figure>
+
+<p>等待安装完成，可以看到目录下多了一个.eslintrc的文件</p>
+<p>参考配置如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">module.exports = &#123;<br>  parser: <span class="hljs-string">&#x27;@typescript-eslint/parser&#x27;</span>,<br>  <span class="hljs-keyword">extends</span>: [<br>    <span class="hljs-string">&#x27;eslint:recommended&#x27;</span>,<br>    <span class="hljs-string">&#x27;plugin:@typescript-eslint/recommended&#x27;</span>,<br>    <span class="hljs-string">&#x27;prettier&#x27;</span>,<br>    <span class="hljs-string">&#x27;plugin:prettier/recommended&#x27;</span><br>  ],<br>  env: &#123;<br>    browser: <span class="hljs-literal">true</span>,<br>    es2021: <span class="hljs-literal">true</span><br>  &#125;,<br>  <span class="hljs-keyword">extends</span>: [<span class="hljs-string">&#x27;eslint:recommended&#x27;</span>],<br>  plugins: [<span class="hljs-string">&#x27;@typescript-eslint&#x27;</span>, <span class="hljs-string">&#x27;prettier&#x27;</span>],<br>  parserOptions: &#123;<br>    ecmaVersion: <span class="hljs-string">&#x27;latest&#x27;</span>,<br>    sourceType: <span class="hljs-string">&#x27;module&#x27;</span><br>  &#125;,<br>  rules: &#123;<br>    <span class="hljs-string">&#x27;prettier/prettier&#x27;</span>: <span class="hljs-string">&#x27;error&#x27;</span>,<br>    <span class="hljs-string">&#x27;no-extra-semi&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/camelcase&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/ban-ts-ignore&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-var-requires&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-extra-semi&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-explicit-any&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-empty-function&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-non-null-assertion&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/explicit-function-return-type&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/explicit-module-boundary-types&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint/no-empty-interface&#x27;</span>: <span class="hljs-string">&#x27;off&#x27;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当执行eslint则会执行代码检查，加上–fix可以自动修改部分问题</p>
+<p>package.json 中添加执行命令</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;prettier&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;prettier --write .&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;lint&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eslint --ext .ts packages/*/**.ts&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;lint:fix&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eslint --ext .ts packages/*/**.ts --fix&quot;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<p>这时我们可以在 packages 下创建 components&#x2F;index.ts，写一些不符合规则的代码然后运行命令试试效果</p>
+<h4 id="husky-lint-staged"><a href="#husky-lint-staged" class="headerlink" title="husky + lint-staged"></a>husky + lint-staged</h4><p><code>husky</code>它可以在项目中植入你设定的<code> </code>git hooks<code>，在 </code>git<code>提交代码的前后，你预设的</code>git hooks<code>可以得到执行，以对代码、文件等进行预设的检查，一旦检查不通过，就可以阻止当前的代码提交，避免了不规范的代码和</code>git&#96; 提交出现在项目中。</p>
+<p>在提交代码前对项目进行<code>lint</code>是非常有必要的，避免提交了不规范或者错误的代码。但在整个项目上运行<code>lint</code>是很慢的，因此借助于<code>lint-staged</code>可以仅对暂存区中的文件进行<code>lint</code>操作。<code>lint-staged</code>可以配合husky使用。</p>
+<p>安装依赖，前提项目中先有git仓库</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">pnpm <span class="hljs-built_in">add</span> husky lint-staged -D -w<br></code></pre></td></tr></table></figure>
+
+<p>执行 npx husky install 创建.husky 目录，该目录下有一个 pre-commit 文件在每次提交代码的时候会执行，可以修改里面的运行脚本，自定义提交需要做的工作，如果没有 pre-commit 文件可以手动创建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br>. <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">$0</span>&quot;</span>)</span>/_/husky.sh&quot;</span><br><br>npx lint-staged<br></code></pre></td></tr></table></figure>
+
+<p>在 package.json 中添加 lint-staged 配置</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>  <span class="hljs-string">&quot;lint-staged&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;*.&#123;js,jsx,vue,ts,tsx&#125;&quot;</span>: [<br>      <span class="hljs-string">&quot;eslint --ext .ts packages/*/**.ts --fix&quot;</span> <span class="hljs-regexp">//</span> 这里也可以写我们上面定义好的命令，如：pnpm lint:fix<br>    ],<br>    <span class="hljs-string">&quot;*.&#123;ts,tsx,js,jsx,cjs,mjs,css,scss,less,md,vue&#125;&quot;</span>: <span class="hljs-string">&quot;prettier --write&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="工具配合使用"><a href="#工具配合使用" class="headerlink" title="工具配合使用"></a>工具配合使用</h4><p>我们在项目的某个需求开发完，需要提交代码时会执行<code>git commit</code>命令，这个命令会触发 <code>husky</code> 的 <code>pre-commit</code> 钩子，在这个钩子中调用了<code>lint-staged</code>命令，将暂存区中的文件进行匹配并作为<code>eslint</code>和<code>prettier</code>的输入，分别进行语法检查修复和代码格式化。</p>
+<p>现在我们可以试着提交一下代码，如果不符合 eslint 校验规则的会自动修复，修复完成后需要再次提交</p>
+<p>如果提交的时候eslint报错，但又想提交，则执行</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">git</span> commit -m <span class="hljs-string">&#x27;提交&#x27;</span> --<span class="hljs-literal">no</span>-verify<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">#前端开发</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>使用eslint、lint-staged、husky搭建前端项目</div>
+      <div>https://thaneyang.github.io/2023/08/使用eslint、lint-staged、husky搭建前端项目.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/%E8%84%9A%E6%89%8B%E6%9E%B6%E6%9C%AC%E5%9C%B0link%E6%A0%87%E5%87%86%E6%B5%81%E7%A8%8B.html" title="脚手架本地link标准流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">脚手架本地link标准流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.html" title="前端开发规范">
+                        <span class="hidden-mobile">前端开发规范</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

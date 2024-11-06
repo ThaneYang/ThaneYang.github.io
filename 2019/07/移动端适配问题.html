@@ -1,264 +1,666 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
 
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>移动端适配问题 | live威的个人博客_前端博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、首先解释几个概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。 设备独立像素(density-independent pixel)设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像">
-<meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="一、首先解释几个概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。 设备独立像素(density-independent pixel)设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端适配问题">
-<meta property="og:url" content="https://thaneyang.github.io/2019/07/移动端适配问题.html">
+<meta property="og:url" content="https://thaneyang.github.io/2019/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E9%97%AE%E9%A2%98.html">
 <meta property="og:site_name" content="live威的个人博客_前端博客">
 <meta property="og:description" content="一、首先解释几个概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。 设备独立像素(density-independent pixel)设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-03T08:00:20.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端适配问题">
-<meta name="twitter:description" content="一、首先解释几个概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。 设备独立像素(density-independent pixel)设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像">
-  
-    <link rel="alternate" href="/atom.xml" title="live威的个人博客_前端博客" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-03T06:43:43.000Z">
+<meta property="article:modified_time" content="2019-07-03T08:00:20.000Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta name="twitter:card" content="summary_large_image">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">live威的个人博客_前端博客</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">用文字书写思想，用代码改变世界</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://thaneyang.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-移动端适配问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/移动端适配问题.html" class="article-date">
-  <time datetime="2019-07-03T06:43:43.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <title>移动端适配问题 - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <h1 class="article-title" itemprop="name">
-      移动端适配问题
-    </h1>
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
-      </header>
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="移动端适配问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-07-03 14:43" pubdate>
+          2019年7月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
       
-        <h3 id="一、首先解释几个概念"><a href="#一、首先解释几个概念" class="headerlink" title="一、首先解释几个概念"></a>一、首先解释几个概念</h3><h4 id="物理像素-physical-pixel"><a href="#物理像素-physical-pixel" class="headerlink" title="物理像素(physical pixel)"></a>物理像素(physical pixel)</h4><p>一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">移动端适配问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="一、首先解释几个概念"><a href="#一、首先解释几个概念" class="headerlink" title="一、首先解释几个概念"></a>一、首先解释几个概念</h3><h4 id="物理像素-physical-pixel"><a href="#物理像素-physical-pixel" class="headerlink" title="物理像素(physical pixel)"></a>物理像素(physical pixel)</h4><p>一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。</p>
 <h4 id="设备独立像素-density-independent-pixel"><a href="#设备独立像素-density-independent-pixel" class="headerlink" title="设备独立像素(density-independent pixel)"></a>设备独立像素(density-independent pixel)</h4><p>设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像素。 所以说，物理像素和设备独立像素之间存在着一定的对应关系，这就是接下来要说的设备像素比。</p>
-<h4 id="设备像素比-device-pixel-ratio"><a href="#设备像素比-device-pixel-ratio" class="headerlink" title="设备像素比(device pixel ratio )"></a>设备像素比(device pixel ratio )</h4><p>设备像素比(简称dpr)定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式的得到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设备像素比 = 物理像素 / 设备独立像素 // 在某一方向上，x方向或者y方向</span><br></pre></td></tr></table></figure></p>
+<h4 id="设备像素比-device-pixel-ratio"><a href="#设备像素比-device-pixel-ratio" class="headerlink" title="设备像素比(device pixel ratio )"></a>设备像素比(device pixel ratio )</h4><p>设备像素比(简称dpr)定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式的得到：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">设备像素比 = 物理像素 / 设备独立像素 <span class="hljs-comment">// 在某一方向上，x方向或者y方向</span><br></code></pre></td></tr></table></figure>
+
 <p>你在开发时写的px和最终渲染显示的物理像素数不是一比一的，可能一个px对应2个物理像素，可能3个物理像素，设备显示的物理像素数和你css的px数的比值就叫做设备像素比（device pixel radio），简称dpr。</p>
 <p>在javascript中，可以通过window.devicePixelRatio获取到当前设备的dpr。</p>
 <p>在css中，可以通过-webkit-device-pixel-ratio，-webkit-min-device-pixel-ratio和 -webkit-max-device-pixel-ratio进行媒体查询，对不同dpr的设备，做一些样式适配(这里只针对webkit内核的浏览器和webview)。</p>
+
+
 
 <p>有了dpr之后，有一个问题就是同样的一张图片，我设了宽高的px数，那么在dpr为1的设备上，和dpr为2的设备上显示的效果是一样的，1个px在dpr为1的设备上会用1个物理像素来显示，在dpr为2的设备上会用2*2个物理像素来显示，这样dpr高的优势就体现不出来了，我设备比他的好，你给我的体验是一样的，可能有些用户不爽，我们可以区分对待，对于高dpr的设备，用物理像素更多的高清图片来替代，也就是2x图，3x图等等。</p>
 <p><strong>什么是2x图片？</strong></p>
 <p>2x图片是指比原图尺寸大一倍的图片<br>这样在css尺寸不变的情况下，就能用到更多的物理像素来显示图片。</p>
 <h3 id="二、适配问题"><a href="#二、适配问题" class="headerlink" title="二、适配问题"></a>二、适配问题</h3><p>考虑移动端适配问题的时候，不需要管物理像素以及dpr等，只管css像素。只跟下图中的逻辑分辨率有关。</p>
 
+
+
 <p><strong>为什么需要做移动端适配？</strong></p>
 <p>因为不同的手机，每一行能显示的css像素总数是不同的。<br>比如<br>iphone5能显示的css像素尺寸为320 x 568<br>iphone6能显示的css像素尺寸为375 x 667</p>
 <p>如果宽度写死为320px，在iphone5下是占满整行的，但是在iphone6下确没有满整行。</p>
 <p>rem就是解决这个问题的，rem不是具体的px，rem具体显示多少像素，是根据根元素的font-size来计算的，比如说你设置了1.2rem，根元素的font-size是100px，那么这个元素动态算出来的px数就是120px。</p>
-<h5 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    let doc = window.document</span><br><span class="line">    let baseWidth = 750 // 这里是根据设计稿的尺寸来的</span><br><span class="line">    let documentHTML = doc.documentElement</span><br><span class="line">    let pixelRatio = 2</span><br><span class="line"></span><br><span class="line">    function setRootFont () &#123;</span><br><span class="line">      let docWidth = documentHTML.getBoundingClientRect().width</span><br><span class="line">      let scale = docWidth / baseWidth</span><br><span class="line">      let setSize = scale * 100</span><br><span class="line">      documentHTML.style.fontSize = setSize + &apos;px&apos;</span><br><span class="line">      let realSize = parseFloat(global.getComputedStyle(document.documentElement).fontSize, 10)</span><br><span class="line">      // android webview 里 html font-size 因设置系统字体大小受到影响</span><br><span class="line">      if (realSize != parseFloat(setSize.toFixed(4), 10)) &#123;</span><br><span class="line">        setSize = (setSize * setSize) / realSize</span><br><span class="line">        documentHTML.style.fontSize = setSize + &apos;px&apos;</span><br><span class="line">      &#125;</span><br><span class="line">      // 设置data-dpr属性，留作的css hack之用</span><br><span class="line">      pixelRatio = global.devicePixelRatio === 3 ? 3 : 2</span><br><span class="line">      documentHTML.setAttribute(&apos;data-dpr&apos;, pixelRatio)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    setRootFont()</span><br><span class="line">    window.addEventListener(&apos;resize&apos;, setRootFont, false)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>工程中加入postcss-pxtorem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-pxtorem -D</span><br></pre></td></tr></table></figure></p>
-<p>项目中增加配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">extraPostCSSPlugins: [</span><br><span class="line">    pxtorem(&#123;</span><br><span class="line">        rootValue: 100,</span><br><span class="line">        propWhiteList: [],</span><br><span class="line">    &#125;),</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
-<p>配置项参考<br><a href="https://github.com/cuth/postcss-pxtorem" target="_blank" rel="noopener">postcss-pxtorem</a></p>
-<p>上面的baseWidth是根据设计稿的尺寸来的设置的，如果设计稿是750，那么就设置为750，这样设计稿上如果是300px的元素，css样式也直接写300px，通过postcss-pxtorem插件，自动转化为3rem。<br>如果在ihone6下，font-size: 50px<br>计算之后的实际像素为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3rem * 50px = 150px</span><br></pre></td></tr></table></figure></p>
+<h5 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h5><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">&lt;script&gt;<br>    <span class="hljs-keyword">let</span> doc = window.document<br>    <span class="hljs-keyword">let</span> baseWidth = <span class="hljs-number">750</span> <span class="hljs-comment">// 这里是根据设计稿的尺寸来的</span><br>    <span class="hljs-keyword">let</span> documentHTML = doc.documentElement<br>    <span class="hljs-keyword">let</span> pixelRatio = <span class="hljs-number">2</span><br><br>    <span class="hljs-keyword">function</span> setRootFont <span class="hljs-literal">()</span> &#123;<br>      <span class="hljs-keyword">let</span> docWidth = documentHTML.get<span class="hljs-constructor">BoundingClientRect()</span>.width<br>      <span class="hljs-keyword">let</span> scale = docWidth<span class="hljs-operator"> / </span>baseWidth<br>      <span class="hljs-keyword">let</span> setSize = scale<span class="hljs-operator"> * </span><span class="hljs-number">100</span><br>      documentHTML.style.fontSize = setSize + &#x27;px&#x27;<br>      <span class="hljs-keyword">let</span> realSize = parse<span class="hljs-constructor">Float(<span class="hljs-params">global</span>.<span class="hljs-params">getComputedStyle</span>(<span class="hljs-params">document</span>.<span class="hljs-params">documentElement</span>)</span>.fontSize, <span class="hljs-number">10</span>)<br>      <span class="hljs-comment">// android webview 里 html font-size 因设置系统字体大小受到影响</span><br>      <span class="hljs-keyword">if</span> (realSize != parse<span class="hljs-constructor">Float(<span class="hljs-params">setSize</span>.<span class="hljs-params">toFixed</span>(4)</span>, <span class="hljs-number">10</span>)) &#123;<br>        setSize = (setSize<span class="hljs-operator"> * </span>setSize)<span class="hljs-operator"> / </span>realSize<br>        documentHTML.style.fontSize = setSize + &#x27;px&#x27;<br>      &#125;<br>      <span class="hljs-comment">// 设置data-dpr属性，留作的css hack之用</span><br>      pixelRatio = global.devicePixelRatio<span class="hljs-operator"> === </span><span class="hljs-number">3</span> ? <span class="hljs-number">3</span> : <span class="hljs-number">2</span><br>      documentHTML.set<span class="hljs-constructor">Attribute(&#x27;<span class="hljs-params">data</span>-<span class="hljs-params">dpr</span>&#x27;, <span class="hljs-params">pixelRatio</span>)</span><br>    &#125;<br><br>    set<span class="hljs-constructor">RootFont()</span><br>    window.add<span class="hljs-constructor">EventListener(&#x27;<span class="hljs-params">resize</span>&#x27;, <span class="hljs-params">setRootFont</span>, <span class="hljs-params">false</span>)</span><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>工程中加入postcss-pxtorem</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> postcss-pxtorem -D<br></code></pre></td></tr></table></figure>
+<p>项目中增加配置</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">extraPostCSSPlugins: [<br>    <span class="hljs-built_in">pxtorem</span>(&#123;<br>        rootValue: <span class="hljs-number">100</span>,<br>        propWhiteList: [],<br>    &#125;),<br>],<br></code></pre></td></tr></table></figure>
+<p>配置项参考<br><a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem">postcss-pxtorem</a></p>
+<p>上面的baseWidth是根据设计稿的尺寸来的设置的，如果设计稿是750，那么就设置为750，这样设计稿上如果是300px的元素，css样式也直接写300px，通过postcss-pxtorem插件，自动转化为3rem。<br>如果在ihone6下，font-size: 50px<br>计算之后的实际像素为</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">3</span><span class="hljs-comment">rem * 50px = 150px</span><br></code></pre></td></tr></table></figure>
 <p>150px在iphone6屏幕下差不多占一半宽，而300px在设计稿上也差不多占一半宽</p>
 <h4 id="像素比和宽度比"><a href="#像素比和宽度比" class="headerlink" title="像素比和宽度比"></a>像素比和宽度比</h4><p>像素比：dpr是设备像素比，也就是css的设备无关像素px和物理像素的比</p>
 <p>宽度比：开发适配的设备的宽度（现在一般是iphone6），和实际的设备的宽度的比</p>
 <p>总的来说，可以一句话来总结，<strong>像素比实现高清，宽度比实现适配</strong></p>
 <p><strong>如何在高清屏幕下实现1px像素？</strong></p>
-<p>通常可以设置元素after或before伪元素为1px，并使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform: scaleY(1/devicePixelRatio)</span><br></pre></td></tr></table></figure></p>
+<p>通常可以设置元素after或before伪元素为1px，并使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(<span class="hljs-number">1</span>/devicePixelRatio)<br></code></pre></td></tr></table></figure>
 <p>来进行单方向的缩放实现1个物理像素的边框或内容。</p>
-<p>此外对于字体，我们也可以设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transform: scale(0.5)</span><br></pre></td></tr></table></figure></p>
+<p>此外对于字体，我们也可以设置</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">transform</span>: scale(<span class="hljs-number">0</span>.<span class="hljs-number">5</span>)<br></code></pre></td></tr></table></figure>
 <p>来显示小于12px的文字</p>
-<p>如果页面内容因为高清屏而导致模糊，则可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-webkit-font-smoothing: antialiased</span><br></pre></td></tr></table></figure></p>
+<p>如果页面内容因为高清屏而导致模糊，则可以使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">-webkit-<span class="hljs-attribute">font-smoothing</span>: antialiased<br></code></pre></td></tr></table></figure>
 <p>来尝试修复</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://www.jianshu.com/p/1b69f0df78f3?from=timeline" target="_blank" rel="noopener">px、物理像素、rem、rpx的关系</a></p>
-<p><a href="https://www.cnblogs.com/jingwhale/p/5741567.html" target="_blank" rel="noopener">从设备像素比到移动适配</a></p>
-<p><a href="https://www.jianshu.com/p/360edb9e4ddc" target="_blank" rel="noopener">物理像素和逻辑像素</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b69f0df78f3?from=timeline">px、物理像素、rem、rpx的关系</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jingwhale/p/5741567.html">从设备像素比到移动适配</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/360edb9e4ddc">物理像素和逻辑像素</a></p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>移动端适配问题</div>
+      <div>https://thaneyang.github.io/2019/07/移动端适配问题.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年7月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://thaneyang.github.io/2019/07/移动端适配问题.html" data-id="clfgaqry70013q2jfjom6oi1y" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    <div class="license-icon iconfont"></div>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/07/模块调试技巧npm-link软链.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          模块调试技巧npm link软链
-        
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/07/%E6%A8%A1%E5%9D%97%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7npm-link%E8%BD%AF%E9%93%BE.html" title="模块调试技巧npm link软链">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模块调试技巧npm link软链</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/03/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%E7%94%9F%E6%88%90%E5%88%86%E4%BA%AB%E5%9B%BE%E7%89%87%E5%B9%B6%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%9D%91.html" title="微信小程序内嵌H5页面生成分享图片并下载的坑">
+                        <span class="hidden-mobile">微信小程序内嵌H5页面生成分享图片并下载的坑</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2019/03/微信小程序内嵌H5页面生成分享图片并下载的坑.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">微信小程序内嵌H5页面生成分享图片并下载的坑</div>
-    </a>
-  
-</nav>
+    </div>
 
-  
-</article>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/babel插件/">babel插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eslint/">eslint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uniapp/">uniapp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浙里办/">浙里办</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a></li></ul>
+
+  </aside>
+
+
     </div>
   </div>
+</div>
+
+
+
 
 
   
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/babel插件/" style="font-size: 10px;">babel插件</a> <a href="/tags/eslint/" style="font-size: 10px;">eslint</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/uniapp/" style="font-size: 15px;">uniapp</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/小程序/" style="font-size: 20px;">小程序</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a> <a href="/tags/浙里办/" style="font-size: 10px;">浙里办</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a>
-    </div>
-  </div>
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/06/微信小程序认证与不认证的区别.html">微信小程序认证与不认证的区别</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/为什么给js原型对象添加的方法能用在基本类型上？.html">为什么给js原型对象添加的方法能用在基本类型上？</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/微信小程序转uniapp迁移步骤及遇到的问题.html">微信小程序转uniapp迁移步骤及遇到的问题</a>
-          </li>
-        
-          <li>
-            <a href="/2022/03/为什么在JavaScript里0-1-0-2不是等于0-3？.html">为什么在JavaScript里0.1 + 0.2不是等于0.3？</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/node-Selenium实现高级爬虫.html">node + Selenium实现高级爬虫</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2023 live威<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
-<script src="/js/script.js"></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
 
 
-  </div>
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

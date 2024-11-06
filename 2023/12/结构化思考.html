@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="汇报工作，你想不想，说完，领导就明白了你的突出贡献？ 与人沟通，你想不想，几句话，就让别人了解你想讲什么？ 面对大量杂乱的信息，你想不想，短时间内就能梳理出结构，找到关键点，提高思考的效率？ 要实现这些愿望，需要我们具备一种思维——结构化思维。思考有了结构，一切都清晰了。 并且，这种思维可以通过刻意练习掌握。一旦学会，终身受益。 一、想清楚，很重要回忆一下你在日常工作中，有没有遇到这样的场景？ 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="结构化思考">
+<meta property="og:url" content="https://thaneyang.github.io/2023/12/%E7%BB%93%E6%9E%84%E5%8C%96%E6%80%9D%E8%80%83.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="汇报工作，你想不想，说完，领导就明白了你的突出贡献？ 与人沟通，你想不想，几句话，就让别人了解你想讲什么？ 面对大量杂乱的信息，你想不想，短时间内就能梳理出结构，找到关键点，提高思考的效率？ 要实现这些愿望，需要我们具备一种思维——结构化思维。思考有了结构，一切都清晰了。 并且，这种思维可以通过刻意练习掌握。一旦学会，终身受益。 一、想清楚，很重要回忆一下你在日常工作中，有没有遇到这样的场景？ 和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/4ee5a8b5f04d31cca8cf45d693eb49af0e311a062e612-Lzh5PS.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/640.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/640-20231219152641366.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/cdbf6c81800a19d875dc6cca35fa828ba71e4626.jpeg">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/640.png">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/640-20230907162900725.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ZYpa3icG6myg5oP4XnwWlXhIeyITG8rN740Ag3eYhRQxSian43tsAuNZeLnRR8jAiaRdXMq5G6UK5IFfG5PJomOyg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2023-12-13T06:19:17.000Z">
+<meta property="article:modified_time" content="2024-07-01T09:21:33.471Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/4ee5a8b5f04d31cca8cf45d693eb49af0e311a062e612-Lzh5PS.png">
+  
+  
+  
+  <title>结构化思考 - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="结构化思考"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-13 14:19" pubdate>
+          2023年12月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">结构化思考</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>汇报工作，你想不想，说完，领导就明白了你的突出贡献？</p>
+<p>与人沟通，你想不想，几句话，就让别人了解你想讲什么？</p>
+<p>面对大量杂乱的信息，你想不想，短时间内就能梳理出结构，找到关键点，提高思考的效率？</p>
+<p>要实现这些愿望，需要我们具备一种思维——结构化思维。思考有了结构，一切都清晰了。</p>
+<p>并且，这种思维可以通过刻意练习掌握。一旦学会，终身受益。</p>
+<h3 id="一、想清楚，很重要"><a href="#一、想清楚，很重要" class="headerlink" title="一、想清楚，很重要"></a><strong>一、想清楚，很重要</strong></h3><p>回忆一下你在日常工作中，有没有遇到这样的场景？</p>
+<p>和领导汇报工作，说了十分钟，领导眉头皱起来了，“说重点！”</p>
+<p>接着你有点慌了，越说感觉越乱，脑子一片空白。最后领导让你停下，让你想清楚了再给他说。</p>
+<p>这种场景，经常发生。<strong>原因是什么？说话人没有说清楚。</strong></p>
+<p><strong>怎样才能说清楚？说清楚的前提是想清楚。</strong></p>
+<p><strong>怎么判断是否想清楚了？有没有一个清晰的思考结构。</strong></p>
+<p>有结构地思考，我们称之为结构化思维。</p>
+<p>如果你有结构化思维，汇报工作就能轻松应对。</p>
+<p>首先，结构化思考，更系统、更全面。</p>
+<p>比如，“如何把200毫升的水装进100毫升的杯子里？”</p>
+<p><img src="http://yzwpic.weimayi.cn/img/4ee5a8b5f04d31cca8cf45d693eb49af0e311a062e612-Lzh5PS.png" srcset="/img/loading.gif" lazyload alt="查看图片"></p>
+<p>看到这个问题，你的第一反应是什么？问题不成立或者没有答案？</p>
+<p>有结构的人，会怎么思考？</p>
+<p>首先分析原因，水倒杯子里，为什么会流出去？是哪些原因造成的？</p>
+<p>杯子小、水是液态会流动、有重力。</p>
+<p>所以针对这个问题，无外乎三个方面原因：第一，杯子本身；第二，水本身；第三，外部环境。</p>
+<p>从这三个方面去审视这个问题的时候，就找到了这个问题的结构，有了这个结构以后，就有了问题的答案。</p>
+<blockquote>
+<p>第一，从杯子的角度。换个大杯子或者拿两个杯子。</p>
+<p>第二，水本身。水是液态，要流动，不让它流有什么办法？冻成冰。</p>
+<p>第三，外部环境。有重力，哪没重力？太空。</p>
+</blockquote>
+<p>所以，这个问题有3个答案。</p>
+<p>其实答案不重要，重要的是，因为一种思维方式，我们把原来看似无解的问题，不仅解决了，还找到了3个答案。</p>
+<p><strong>所以，很多时候，面对一个问题，你没有答案，不是你不够聪明，不是你不够努力，也不是你没有足够的知识储备，而是你不会用一个思维方式，让它帮助你把事情想得更全面，更清楚。</strong></p>
+<p>其次，结构化思考，更符合我们大脑的认知习惯。</p>
+<p>大脑在处理信息的时候，有两个习惯：</p>
+<blockquote>
+<p>第一，接受不了太多信息，一次最多记忆的知识点数量是7；</p>
+<p>第二，喜欢有规律的信息，会下意识地寻找信息之间的逻辑关系。</p>
+</blockquote>
+<p>所以，如果别人一下提供了很多杂乱无序的信息，你很难记，记了也很快就忘记了。</p>
+<p>比如，下图这串数字，很难记。</p>
+<p><img src="http://yzwpic.weimayi.cn/img/640.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>而一旦，信息变得有规律，即使信息多，也能轻松记住。</p>
+<p><img src="http://yzwpic.weimayi.cn/img/640-20231219152641366.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>图片</p>
+<p>当别人向你提供了很多零散、无规律的信息时，你就抓不住重点了，也记不住对方讲的什么。</p>
+<p>我们换位思考一下，听汇报的领导就是这种感受，所以他才要求说重点。</p>
+<p>所以一切与人沟通的场合，我们学会结构化地思考，把所有碎片化信息归类汇总，不仅减轻大脑的负担，而且降低沟通的成本。</p>
+<p>最后，互联网时代，很多信息都是碎片化的，没有结构化思维，信息只是信息，看过就忘。如果构建了自己的结构化能力，接触到碎片信息，就能把它放到自己的知识体系中。</p>
+<h3 id="二、“金字塔结构”帮你想清楚"><a href="#二、“金字塔结构”帮你想清楚" class="headerlink" title="二、“金字塔结构”帮你想清楚"></a><strong>二、“金字塔结构”帮你想清楚</strong></h3><p>结构化思维，最早也是由麦肯锡公司提出，并写成了一本书《金字塔原理》，最后被大家熟知。</p>
+<p><img src="http://yzwpic.weimayi.cn/img/cdbf6c81800a19d875dc6cca35fa828ba71e4626.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>所以“结构化思考”又被称为“金字塔原理”。</p>
+<h4 id="1-什么是金字塔原理？"><a href="#1-什么是金字塔原理？" class="headerlink" title="1.什么是金字塔原理？"></a><strong>1.什么是金字塔原理？</strong></h4><p>金字塔原理，是一种重点突出、逻辑清晰、层次分明、简单易懂的结构化思考方式。</p>
+<p><img src="http://yzwpic.weimayi.cn/img/640.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>所谓塔尖，就是中心思想，是你想表达的所有核心要点；塔中，是由阐述支持中心思想的方法论构成；塔底，是由支撑方法论的案例组成，也就是论据。</p>
+<p>由此，一个清晰的金字塔结构就呈现了！</p>
+<p>金字塔原理可以概括为十六个字：</p>
+<p><strong>结论先行，以上统下，归类分组，逻辑递进。</strong></p>
+<p>展开来说就是，</p>
+<p>① 先重要，后次要；</p>
+<p>② 先总结，后具体；</p>
+<p>③ 先框架，后细节；</p>
+<p>④ 先结论，后原因；</p>
+<p>⑤ 先结果，后过程；</p>
+<p>⑥ 先论点，后论据。</p>
+<p>一个人要表达的观点，必定是呈金字塔结构分布（一个大观点下统领多个小观点），因为大部分的人会先了解主要的、抽象的观点，然后再了解次要的观点。</p>
+<h4 id="2-如何构建金字塔结构？"><a href="#2-如何构建金字塔结构？" class="headerlink" title="2.如何构建金字塔结构？"></a><strong>2.如何构建金字塔结构？</strong></h4><p>构建金字塔结构，有两种方式：</p>
+<h5 id="①-先给结论，自上而下地找结构"><a href="#①-先给结论，自上而下地找结构" class="headerlink" title="① 先给结论，自上而下地找结构"></a><strong>① 先给结论，自上而下地找结构</strong></h5><p>通常，自上而下地找金字塔结构，更容易一些。</p>
+<p>因为大脑最先思考的，往往是最容易确定的事情，也就是最上层的中心思想。</p>
+<p>年终给老板汇报期一年的业绩时，肯定是先汇报一年的总业绩，再分别论述各个总数据下面的具体完成情况。</p>
+<p>老板听汇报时间只有15分钟，不可能一上来就展开具体的详细数据，讲个没完没了。</p>
+<p>有人问你：如何看待民营经济的现状？</p>
+<p>不用结构，你可能会说：之前总体不太好，但是最近好点了。</p>
+<p>这句话只能是你的一个感知，非常主观，缺乏结构，缺乏说服力，也不全面。在做商业决策的时候，弱势非常明显。</p>
+<p>可是，如果你知道宏观环境分析比较常见的结构是PEST（Political政治层面, Economic经济层面, Social社会层面, Technological技术层面），你就可以从这4个方面思考，汇总观点，最后得出结论。</p>
+<p>给别人讲述时，首先说出结论，再亮出4个支持的观点，说服力更强。</p>
+<p>所以，自上而下的找结构，就是先提出核心思想，再依次列出支撑核心思想的具体观点。</p>
+<h5 id="②-自下而上，归纳总结成结构"><a href="#②-自下而上，归纳总结成结构" class="headerlink" title="② 自下而上，归纳总结成结构"></a><strong>② 自下而上，归纳总结成结构</strong></h5><p>生活中，我们会遇到纷繁复杂的事物。</p>
+<p>成长的过程，就是我们不断学习、不断归纳，将复杂世界里诸多的表象，归纳为各种认知模型的过程，这些过程，其实就是一次又一次自下而上的思考过程。</p>
+<p>再举个例子，面对以下9种食物：葡萄、橘子、牛奶、咸鸭蛋、土豆、苹果、鸡蛋、酸奶、胡萝卜，如何快速记忆？</p>
+<p>想快速记忆，仅仅将9种食物分组是不够的，最好能找出这9种食物的内在逻辑关系。比如：</p>
+<p><img src="http://yzwpic.weimayi.cn/img/640-20230907162900725.png" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p>（9种食物的潜在逻辑关系）</p>
+<p>分类之后，9种食物就变成了简单的三组：水果、蔬菜和蛋奶产品。记忆三组有特征的食物，要比记忆9种散乱的食物用时更短、更快速。</p>
+<p>这就是一个自下而上的归纳过程。</p>
+<p>想记忆9种水果不难，难的是快速记忆，更难的是在日常生活中快速记忆更多、更复杂的事物。复杂的事物之间产生逻辑联系，是大脑能记住庞大知识量的原因。</p>
+<p>而自下而上的思考，会让我们提炼出事物最底层的逻辑和原理，帮助我们更高效、更准确地做出决策。</p>
+<p>在自下而上思考这一过程中，我们需要遵循4大原则：</p>
+<p>a.原则一：结论唯一</p>
+<p>在金字塔结构下，“结论先行，以上统下”意味着：金字塔结构中，结论有且只能有一个。</p>
+<p>为什么只能有一个？因为总结归纳问题是为了简化思维，找出复杂问题背后的方法论。</p>
+<p>b.原则二：MECE法则</p>
+<p>MECE法则（Mutually Exclusive Collectively Exhaustive）意思是：相互独立，完全穷尽。</p>
+<p>第一，互相独立：意味着分类是在同一标准或者同一维度上来进行的，并且有明确的区分，不可出现重叠的现象。</p>
+<p>第二，完全穷尽：意味着划分上没有遗漏，横向结构的各个部分完全穷尽了上一层次的概念。</p>
+<p>在MECE法则下，人类可以分为男人和女人两类，男人和女人，既互相独立又完全穷尽。男人和女人的分类方法，使得对人类这一概念既完全概括，没有遗漏；又没有重复、冗余。</p>
+<p>MECE法则的本质就是简化思维，降低复杂度。掌握MECE法则是学会构建金字塔式思考方式必不可少的一步。</p>
+<p>c.原则三：演绎法（纵向逻辑）</p>
+<p>什么是演绎法呢？</p>
+<p>举个例子：a.所有的人都会死；b.苏格拉底是一个人；c.因此苏格拉底会死。</p>
+<p>最后概括为：因为苏格拉底是一个人，所以苏格拉底会死。</p>
+<p>句子b是对句子a做的表述，而句子c是从句子a、句子b中演绎出来的推论。</p>
+<p>用演绎法表达一个观点的时候，必须进行三段式的论述。这就需要符合以下规则：第一，大提前正确，第二，小前提正确。</p>
+<p>遵循以上两个规则，才能演绎出正确的结论。</p>
+<p>所以演绎法，能帮我们理清两个纵向金字塔之间的关系。</p>
+<p>d.原则四：归纳法（横向逻辑）</p>
+<p>什么是归纳法呢？</p>
+<p>举个例子：a.法国坦克已抵达波兰边境；b.德国坦克已抵达波兰边境；c.俄国坦克已抵达波兰边境。</p>
+<p>最后归纳为：波兰将受到坦克入侵。</p>
+<p>通过归纳法可以很快地理清思路和逻辑顺序，最终得到一个合理的推论。</p>
+<p>对于归纳法来说，常见的逻辑顺序有以下三种：</p>
+<p>第一种，是时间顺序或步骤顺序。比如:第一，第二，第三……它们之间存在因果关系，数目最好不要超过7个以上。</p>
+<p>第二种，是结构顺序。各部分之间相互独立，没有重叠，有排他性，以确保完整性和合理性；</p>
+<p>第三种，是重要性顺序。每个论点的重要程度不一样，比如最重要、次重要、一般重要等等，将最重要的思想放在第一位。</p>
+<h4 id="3-如何使用金字塔结构解决问题？"><a href="#3-如何使用金字塔结构解决问题？" class="headerlink" title="3.如何使用金字塔结构解决问题？"></a><strong>3.如何使用金字塔结构解决问题？</strong></h4><p>小王来向你咨询职业选择，你和小王沟通后得知：他性格外向且大条，学的是工科，他刚刚毕业，拿到两个Offer，一个是技术方面的，一个是销售方面的。从纯理性的角度，你怎么帮他分析呢？</p>
+<p><strong>第一步：写下所有想法。</strong>（以下只是举例，不具备参考意义。）</p>
+<p>包括：</p>
+<blockquote>
+<p>① 技术岗位的基本工资更高；</p>
+<p>② 他性格外向，喜欢与人交往，做销售可能更加适合他的个性；</p>
+<p>③ 销售的奖金更多；</p>
+<p>④ 做销售晋升更容易，晋升会伴随加薪；</p>
+<p>⑤ 他学的是工科，具备做技术的基本知识；</p>
+<p>⑥ 他没有营销的经验和知识，做销售的话，上手需要一定时间。</p>
+</blockquote>
+<p><strong>第二步：分组。</strong></p>
+<p>你会发现，1&#x2F;3&#x2F;4说的好像都是收入，5&#x2F;6说的是知识和经验储备，2说的是性格，归类分组结果如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ZYpa3icG6myg5oP4XnwWlXhIeyITG8rN740Ag3eYhRQxSian43tsAuNZeLnRR8jAiaRdXMq5G6UK5IFfG5PJomOyg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload alt="图片"></p>
+<p><strong>第三步：用MECE原则找出各组的规律，确定结构。</strong></p>
+<p>根据MECE的原则，这些分组需要相互独立、完全穷尽。</p>
+<p>收入、性格、知识——这三个要素符合相互独立吗？是的，这是三个无关的要素。</p>
+<p>但是，这三个要素完全穷尽了吗？好像没有。</p>
+<p>考虑技术和销售两个职位选择的时候，除了性格，是不是还有能力呢？比如沟通能力、谈判能力等等。另外，是不是考虑小王自己的兴趣和爱好了呢？</p>
+<p>所以，我们扩展一下，找出了这些组：收入、性格、能力、知识经验、爱好。</p>
+<p>这五个要素是否符合MECE呢？好像穷尽得差不多了，但似乎不独立了，因为性格跟爱好是相关的，而能力和知识好像也很难分开。</p>
+<p>所以，我们把性格跟爱好组合在一起，将能力和知识组合在一起，变成：收入、性格&amp;爱好、能力&amp;知识&amp;经验。这三组符合MECE了，但是名字怪怪的。</p>
+<p>进一步分析，你会发现，收入是在说能否赚钱养活自己，性格爱好是在说是否感兴趣，能力知识经验是在说能否做得好，这样就清晰多了。</p>
+<p><strong>第四步：最后补充信息。</strong></p>
+<h5 id="比如，收入这块，除了考虑基本工资、奖金、加薪速度，是不是还有其它，比如福利的差异呢？等等。"><a href="#比如，收入这块，除了考虑基本工资、奖金、加薪速度，是不是还有其它，比如福利的差异呢？等等。" class="headerlink" title="比如，收入这块，除了考虑基本工资、奖金、加薪速度，是不是还有其它，比如福利的差异呢？等等。"></a>比如，收入这块，除了考虑基本工资、奖金、加薪速度，是不是还有其它，比如福利的差异呢？等等。</h5><p>用这样的思路，你帮小王做职业选择的分析，是不是清晰很多、脑子不再一团浆糊了呢？</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a><strong>三、总结</strong></h3><p>结构化思维是可培养且价值度高的能力，我们解决问题、与人沟通中都能用到。</p>
+<p>面对一个问题，先思考框架，可以自上而下或者自下而上的找框架。我们生活中更多的是自下而上地找结构。因为我们会遇到大量复杂的信息，把这些信息整理成结构，然后得出结论。</p>
+<p>结构要尽量符合MECE（相互独立、完全穷尽）原则，如果不能，至少也符合CE（完全穷尽）。</p>
+<p>著名作家冯唐，经过多年的实践，认为金字塔原理是他人生诸多训练中最宝贵的东西。有结构地思考，就才能把事情想清楚。想清楚了，事情就成了一半。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">#项目管理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>结构化思考</div>
+      <div>https://thaneyang.github.io/2023/12/结构化思考.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/nodejs%E4%B8%AD%E8%84%9A%E6%89%8B%E6%9E%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html" title="nodejs中脚手架的实现原理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">nodejs中脚手架的实现原理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%EF%BC%8C%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html" title="从输入 URL到页面展示，发生了什么">
+                        <span class="hidden-mobile">从输入 URL到页面展示，发生了什么</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

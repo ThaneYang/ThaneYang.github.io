@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="一、Cookie简介1、Cookie是什么cookie是由网络服务器存储在你电脑硬盘上的一个txt类型的小文件，它和你的网络浏览行为有关，所以存储在你电脑上的cookie就好像你的一张身份证，你电脑上的cookie和其他电脑上的cookie是不一样的。 2、Cookie与Session的区别session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cooki">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx解决跨域问题">
+<meta property="og:url" content="https://thaneyang.github.io/2024/02/Nginx%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="一、Cookie简介1、Cookie是什么cookie是由网络服务器存储在你电脑硬盘上的一个txt类型的小文件，它和你的网络浏览行为有关，所以存储在你电脑上的cookie就好像你的一张身份证，你电脑上的cookie和其他电脑上的cookie是不一样的。 2、Cookie与Session的区别session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cooki">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yzwpic.weimayi.cn/img/image-20240612100115665.png">
+<meta property="article:published_time" content="2024-02-03T01:23:42.000Z">
+<meta property="article:modified_time" content="2024-07-02T01:24:24.821Z">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/image-20240612100115665.png">
+  
+  
+  
+  <title>Nginx解决跨域问题 - live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nginx解决跨域问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-03 09:23" pubdate>
+          2024年2月3日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Nginx解决跨域问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="一、Cookie简介"><a href="#一、Cookie简介" class="headerlink" title="一、Cookie简介"></a>一、Cookie简介</h3><h4 id="1、Cookie是什么"><a href="#1、Cookie是什么" class="headerlink" title="1、Cookie是什么"></a>1、Cookie是什么</h4><p>cookie是由网络服务器存储在你电脑硬盘上的一个txt类型的小文件，它和你的网络浏览行为有关，所以存储在你电脑上的cookie就好像你的一张身份证，你电脑上的cookie和其他电脑上的cookie是不一样的。</p>
+<h4 id="2、Cookie与Session的区别"><a href="#2、Cookie与Session的区别" class="headerlink" title="2、Cookie与Session的区别"></a>2、Cookie与Session的区别</h4><p>session机制采用的是在服务器端保持状态的方案，而cookie机制则是在客户端保持状态的方案，cookie又叫会跟踪机制。打开一次浏览器到关闭浏览器算是一次会话。</p>
+<p>HTTP协议是一种无状态协议，在数据交换完毕后，服务器端和客户端的链接就会关闭，每次交换数据都需要建立新的链接。此时，服务器无法从链接上跟踪会话。cookie可以跟踪会话，弥补HTTP无状态协议的不足。</p>
+<h4 id="3、Cookie是前后端共享的"><a href="#3、Cookie是前后端共享的" class="headerlink" title="3、Cookie是前后端共享的"></a>3、Cookie是前后端共享的</h4><p>因为在发起请求的时候会带上Cookie，在后端我们可以使用getCookies()的方法来获取这次请求中的Cookies。</p>
+<h3 id="二、Cookie的使用场景"><a href="#二、Cookie的使用场景" class="headerlink" title="二、Cookie的使用场景"></a>二、Cookie的使用场景</h3><p>登录，通过Cookie来检查登录状态，并且可以通过Cookie的过期时间来设置多长时间内不用重复登录设置客户端风格，其实这就是为什么不同电脑登录同一个账号设置的风格无法更新过来的原因以及其他对安全性要求不高的信息保存场景</p>
+<h3 id="三、Cookie的跨域问题"><a href="#三、Cookie的跨域问题" class="headerlink" title="三、Cookie的跨域问题"></a>三、Cookie的跨域问题</h3><h4 id="1、什么是跨域问题？"><a href="#1、什么是跨域问题？" class="headerlink" title="1、什么是跨域问题？"></a>1、什么是跨域问题？</h4><p>首先我们打开一个页面按F12</p>
+<p><img src="http://yzwpic.weimayi.cn/img/image-20240612100115665.png" srcset="/img/loading.gif" lazyload alt="image-20240612100115665"></p>
+<p>在应用中我们可以找到Cookie，其中的Domain就是Cookie所述的域名，跨域就是默认情况下Cookie是无法被携带到其他域名下的当一个请求url的<strong>协议、域名、端口</strong>三者之间任意一个与当前页面url不同即为跨域</p>
+<table>
+<thead>
+<tr>
+<th>当前页面url</th>
+<th>被请求页面url</th>
+<th>是否跨域</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/index.html">http://www.test.com/index.html</a></td>
+<td>否</td>
+<td>同源（协议、域名、端口号相同）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.test.com/index.html">https://www.test.com/index.html</a></td>
+<td>跨域</td>
+<td>协议不同（http&#x2F;https）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com/</a></td>
+<td>跨域</td>
+<td>主域名不同（test&#x2F;baidu）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com/">http://www.test.com/</a></td>
+<td><a target="_blank" rel="noopener" href="http://blog.test.com/">http://blog.test.com/</a></td>
+<td>跨域</td>
+<td>子域名不同（www&#x2F;blog）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.test.com:8080/">http://www.test.com:8080/</a></td>
+<td><a target="_blank" rel="noopener" href="http://www.test.com:7001/">http://www.test.com:7001/</a></td>
+<td>跨域</td>
+<td>端口号不同（8080&#x2F;7001）</td>
+</tr>
+</tbody></table>
+<h4 id="2、Cookie的属性"><a href="#2、Cookie的属性" class="headerlink" title="2、Cookie的属性"></a>2、Cookie的属性</h4><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Cookie的属性</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名称</td>
+<td>Cookie的name</td>
+</tr>
+<tr>
+<td>值</td>
+<td>Cookie的value</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>Cookie的域。如果设成xxx.com(一级域名)，那么子域名x.xxx.com(二级域名)，都可以使用xxx.com的Cookie</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>Cookie的路径。如果设为&#x2F;，则同域名全部路径均可使用该Cookie。如果设为&#x2F;xxx&#x2F;，则只有路径为&#x2F;xxx&#x2F;可以使用该Cookie。</td>
+</tr>
+<tr>
+<td>Expires &#x2F; Max-Age</td>
+<td>Cookie的超时时间。如果值为时间，则在到达指定时间后Cookie失效。如果值为Session(会话)，Cookie会同Session一起失效，当整个浏览器关闭的时候Cookie失效。</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Cookie的大小。</td>
+</tr>
+<tr>
+<td>HttpOnly</td>
+<td>值为true时，Cookie只会在Http请求头中存在，不能通过doucment.cookie(JavaScript)访问Cookie。</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>值为true时，只能通过https来传输Cookie。</td>
+</tr>
+<tr>
+<td>SameSite</td>
+<td>值为Strict，完全禁止第三方Cookie，跨站时无法使用Cookie。值为Lax，允许在跨站时使用Get请求携带Cookie，下面有一个表格介绍Lax的Cookie使用情况。值为None，允许跨站跨域使用Cookie，前提是将Secure属性设置为true。Priority ：Cookie的优先级。值为Low&#x2F;Medium&#x2F;High，当Cookie数量超出时，低优先级的Cookie会被优先清除。</td>
+</tr>
+</tbody></table>
+<h4 id="3、如何解决跨域问题"><a href="#3、如何解决跨域问题" class="headerlink" title="3、如何解决跨域问题"></a>3、如何解决跨域问题</h4><p>这里介绍一个比较常用的方式就是使用Nginx进行反向代理。</p>
+<p>我们只需要配置nginx，在一个服务器上配置多个前缀来转发http&#x2F;https请求到多个真实的服务器即可。这样，这个服务器上所有url都是相同的域 名、协议和端口。因此，对于浏览器来说，这些url都是同源的，没有跨域限制。而实际上，这些url实际上由物理服务器提供服务。</p>
+<p>在 nginx 中配置反向代理服务器，将客户端的请求转发到后端服务器，并在转发过程中添加相应的响应头。例如，假设前端服务器运行在 <a target="_blank" rel="noopener" href="http://frontend.example.com,后端服务器运行在/">http://frontend.example.com，后端服务器运行在</a> <a target="_blank" rel="noopener" href="http://backend.example.com,则可以在/">http://backend.example.com，则可以在</a> nginx 中配置如下的反向代理服务器：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span> frontend.example.com;<br><br>    <span class="hljs-section">location</span> /api &#123;<br>        <span class="hljs-attribute">proxy_pass</span> http://backend.example.com;<br>        <span class="hljs-attribute">add_header</span> Access-Control-Allow-Origin http://frontend.example.com;<br>        <span class="hljs-attribute">add_header</span> Access-Control-Allow-Credentials <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>上述配置中，location &#x2F;api 将客户端请求中的 &#x2F;api 转发到后端服务器的对应接口。<br><code>add_header Access-Control-Allow-Origin http://frontend.example.com</code> 表示允许来自 <a target="_blank" rel="noopener" href="http://frontend.example.com/">http://frontend.example.com</a> 的跨域请求。<br><code>add_header Access-Control-Allow-Credentials true </code>表示允许跨域请求携带 cookie。</p>
+<p>设置相应的响应头在响应头中添加相应的跨域设置，以允许客户端发送跨域请求和携带 cookie。例如，添加 Access-Control-Allow-Origin 和 Access-Control-Allow-Credentials 头部：Access-Control-Allow-Origin: <a target="_blank" rel="noopener" href="http://frontend.example.com/">http://frontend.example.com</a></p>
+<p>Access-Control-Allow-Credentials: true这样客户端在向后端服务器发送请求时，就能携带 cookie，并允许跨域请求。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Nginx/">#Nginx</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Nginx解决跨域问题</div>
+      <div>https://thaneyang.github.io/2024/02/Nginx解决跨域问题.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>live威</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年2月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/webpak%E4%B8%ADbabel-loader%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.html" title="webpak中babel-loader的工作流程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">webpak中babel-loader的工作流程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/mac%E7%94%A8electron-forge%E6%89%93%E5%8C%85exe%E5%8C%85.html" title="mac用electron-forge打包exe包">
+                        <span class="hidden-mobile">mac用electron-forge打包exe包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

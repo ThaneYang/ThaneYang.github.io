@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="og:type" content="website">
+<meta property="og:title" content="live威的个人博客_前端博客">
+<meta property="og:url" content="https://thaneyang.github.io/page/4/index.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BD%ACuniapp%E8%BF%81%E7%A7%BB%E6%AD%A5%E9%AA%A4%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98.html" target="_self">
+          微信小程序转uniapp迁移步骤及遇到的问题
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%BD%ACuniapp%E8%BF%81%E7%A7%BB%E6%AD%A5%E9%AA%A4%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98.html" target="_self">
+        <div>
+          背景公司有一个历史项目，是使用原生小程序开发的。最近客户提了需求，想要H5端也可以访问，为了节省时间和成本，所以最终决定迁移到uniapp，一套代码可以多端生成，这篇文章主要记录迁移的步骤和遇到的问题。 迁移步骤第一步：安装miniprogram-to-uniapp插件把微信小程序转成uni-app，推荐一款【miniprogram-to-uniapp】小程序转换工具插件 前提是先安装好nodej
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-20 17:30" pubdate>
+              2023-02-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#微信小程序</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/02/uniapp%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%89%E8%A3%85uni-id.html" target="_self">
+          uniapp云函数安装uni-id
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/uniapp%E4%BA%91%E5%87%BD%E6%95%B0%E5%AE%89%E8%A3%85uni-id.html" target="_self">
+        <div>
+          为什么需要uni-id99%的应用，都要开发用户注册、登录、发送短信验证码、密码加密保存、修改密码、token管理等功能 uni-id为uniCloud开发者提供了简单、统一、可扩展的用户管理能力封装。 直白的说，就是避免重复造轮子，人家官方已经我们造好了，只需要拿来用就行 uni-id已完成的内容：  注册、登录、发送短信验证码、密码加密保存、修改密码、token管理（短信验证码功能需要HBui
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-18 13:46" pubdate>
+              2023-02-18
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/uniapp/">#uniapp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/02/%E5%A6%82%E4%BD%95%E5%9C%A8uni-app%E6%A1%86%E6%9E%B6%E4%B8%8B%E4%BD%BF%E7%94%A8wxml-to-canvas.html" target="_self">
+          如何在uni-app框架下使用wxml-to-canvas
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/%E5%A6%82%E4%BD%95%E5%9C%A8uni-app%E6%A1%86%E6%9E%B6%E4%B8%8B%E4%BD%BF%E7%94%A8wxml-to-canvas.html" target="_self">
+        <div>
+          需求：大家都知道微信小程序不能分享到朋友圈。所以想要在朋友圈传播通常是以海报的形式。 小程序需要先生成海报页面，然后保存海报图片到手机相册，最后分享到朋友圈 小程序的canvas可以实现，但是学习成本大，排版麻烦 所以打算使用小程序扩展组件wxml-to-canvas 基于原生程序开发：第一步：npm安装 1npm install --save wxml-to-canvas  后面再增加JSON组
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-02-16 16:51" pubdate>
+              2023-02-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/12/yarn%E7%9A%84%E5%AE%89%E8%A3%9D%E5%92%8C%E4%BD%BF%E7%94%A8.html" target="_self">
+          yarn的安裝和使用
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/12/yarn%E7%9A%84%E5%AE%89%E8%A3%9D%E5%92%8C%E4%BD%BF%E7%94%A8.html" target="_self">
+        <div>
+          Yarn 的简介：Yarn是facebook发布的一款取代npm的包管理工具； Yarn的特色：1）速度超快—-Yarn缓存了每一个下载过的包，因此再次使用时无需重复下载。同时利用并行下载以最大化资源利用率，所以安装快。 2）超级安全—-在执行代码以前，Yarn会经过算法检验每一个安装包的完整性。 3）超级可靠—–使用详细、简洁的锁文件格式和明确的安装算法，Yarn可以保证在不一样系统上无差别工做
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-12-12 12:38" pubdate>
+              2022-12-12
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/yarn/">#yarn</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8JavaScript%E9%87%8C0-1-0-2%E4%B8%8D%E6%98%AF%E7%AD%89%E4%BA%8E0-3%EF%BC%9F.html" target="_self">
+          为什么在JavaScript里0.1 + 0.2不是等于0.3？
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8JavaScript%E9%87%8C0-1-0-2%E4%B8%8D%E6%98%AF%E7%AD%89%E4%BA%8E0-3%EF%BC%9F.html" target="_self">
+        <div>
+          根据浮点数的定义，非整数的Number类型无法用 &#x3D;&#x3D;（&#x3D;&#x3D;&#x3D;也不行） 来比较，一段著名的代码，为什么在JavaScript中，0.1+0.2不能&#x3D;0.3：· 1console.log( 0.1 + 0.2 == 0.3);    这里输出的结果是false，说明两边不相等的，这是浮点运算的特点，浮点数运算的精度问题导致等式左右的结果并不
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-20 11:23" pubdate>
+              2022-03-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/node-Selenium%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%BA%A7%E7%88%AC%E8%99%AB.html" target="_self">
+          node + Selenium实现高级爬虫
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/node-Selenium%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%BA%A7%E7%88%AC%E8%99%AB.html" target="_self">
+        <div>
+          1.全局安装chromedrive包 1npm install -g chromedriver  如果环境变量PATH配置错误，只需要在本地项目安装chromedriver包 1npm install --save-dev chromedriver  新建index.js 1234567891011import webdriver from &#x27;selenium-webdriver&#x2
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-19 13:13" pubdate>
+              2022-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/nodejs/">#nodejs</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/dependencies%E5%92%8CdevDependencies%E7%9A%84%E5%8C%BA%E5%88%AB.html" target="_self">
+          dependencies和devDependencies的区别
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/dependencies%E5%92%8CdevDependencies%E7%9A%84%E5%8C%BA%E5%88%AB.html" target="_self">
+        <div>
+          我们都知道package.json里的依赖有两种，一种是dependencies，一种是devDependencies，下面我们来看看两者的主要区别。 Dependencies 首页dependencies是我们比较常用的，安装的依赖最终会被构建到部署环境里 npm install vue --save // 或者 npm install vue -S // 或者 npm install vue
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-10 11:27" pubdate>
+              2021-12-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87wxml-to-canvas%E7%94%9F%E6%88%90%E5%88%86%E4%BA%AB%E6%B5%B7%E6%8A%A5.html" target="_self">
+          小程序通过wxml-to-canvas生成分享海报
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87wxml-to-canvas%E7%94%9F%E6%88%90%E5%88%86%E4%BA%AB%E6%B5%B7%E6%8A%A5.html" target="_self">
+        <div>
+          需求：小程序项目中，想要实现生成一张海报图，并且可以将图片保存到手机本地相册，然后用户可以分享到朋友圈或者发送给好友 小程序的canvas可以实现，但是学习成本大，排版麻烦 所以打算使用小程序官方扩展组件wxml-to-canvas 原因：由于项目使用了uniapp开发，跟小程序扩展组件的安装逻辑冲突 正常原生小程序开发，如果要增加扩展组件wxml-to-canvas 只需要安装 1npm ins
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-21 15:51" pubdate>
+              2021-11-21
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#小程序</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/%E5%A6%82%E4%BD%95%E5%9C%A8git%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%89%A7%E8%A1%8Ceslint.html" target="_self">
+          如何在git提交的时候，执行eslint
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/%E5%A6%82%E4%BD%95%E5%9C%A8git%E6%8F%90%E4%BA%A4%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%89%A7%E8%A1%8Ceslint.html" target="_self">
+        <div>
+          需求每次提交代码，只有通过eslint规范后才能提交  每次上传代码，只有通过单元测试才能上传 步骤一、首先需要安装依赖包1npm install eslint babel-eslint eslint-plugin-vue husky lint-staged  二、配置eslint在项目根目录新建.eslinttrc.js 1234567891011121314151617181920212223
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-18 09:44" pubdate>
+              2021-08-18
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/eslint/">#eslint</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/babel%E6%8F%92%E4%BB%B6%E4%B9%8B%E5%8E%BB%E6%8E%89debugger%E5%92%8Cconsole.html" target="_self">
+          babel插件之去掉debugger和console
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/06/babel%E6%8F%92%E4%BB%B6%E4%B9%8B%E5%8E%BB%E6%8E%89debugger%E5%92%8Cconsole.html" target="_self">
+        <div>
+          需求每次部署代码之前，都会将debugger和console.log一起提交上去，如果手动注释，又太麻烦，所以需要一个babel插件，能够在打包的时候，将这部分的代码去除掉 解决首先安装依赖 123yarn add @babel/parseryarn add @babel/traverseyarn add @babel/core  index.js 123456789101112131415161
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-08 13:43" pubdate>
+              2021-06-08
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/babel%E6%8F%92%E4%BB%B6/">#babel插件</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

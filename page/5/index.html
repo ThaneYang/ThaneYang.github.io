@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="live威">
+  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  
+    <meta name="description" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="og:type" content="website">
+<meta property="og:title" content="live威的个人博客_前端博客">
+<meta property="og:url" content="https://thaneyang.github.io/page/5/index.html">
+<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:description" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="live威">
+<meta property="article:tag" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>live威的个人博客_前端博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thaneyang.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/%E8%AE%B0%E4%B8%80%E6%AC%A1http%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96.html" target="_self">
+          记一次http缓存优化
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/%E8%AE%B0%E4%B8%80%E6%AC%A1http%E7%BC%93%E5%AD%98%E4%BC%98%E5%8C%96.html" target="_self">
+        <div>
+          我们用http访问网站时，会先发起一个请求，之后服务器响应这个请求，在Chrome的开发者工具(按F12或右击选择检查)我们可以看到整个过程。 第一部分General，包含请求地址、请求方式，状态码，服务器地址以及Referrer策略。 第二部分是响应头，是服务器端返回的。 第三部分是请求头，是客户端发起的。 这次我们从两个角度来看看http的缓存：缓存控制和缓存校验。 缓存控制：控制缓存的开关，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-15 11:42" pubdate>
+              2021-05-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/vscode%E9%80%9A%E8%BF%87snipptes%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A9%BA%E7%99%BD%E6%A8%A1%E6%9D%BF%E9%A1%B5.html" target="_self">
+          vscode通过snipptes，快速生成uniapp小程序空白模板页
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/vscode%E9%80%9A%E8%BF%87snipptes%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90uniapp%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A9%BA%E7%99%BD%E6%A8%A1%E6%9D%BF%E9%A1%B5.html" target="_self">
+        <div>
+          痛点每次开发uniapp版本的微信小程序，新建空白页面的时候都很麻烦，所以就想自定义一个模板，通过输入快捷键来快速新建小程序页面模板 步骤命令行 123Ctrl+Shift+P# 选择 Configure User Snippets# 选择 Vue.json  原始的Vue.json 123456789101112131415&#123;	// Place your snippets for vu
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-25 10:34" pubdate>
+              2021-04-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/uniapp/">#uniapp</a>
+            
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#小程序</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/%E8%85%BE%E8%AE%AF%E6%96%87%E6%A1%A3%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%8C%E8%85%BE%E8%AE%AF%E6%96%87%E6%A1%A3%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%EF%BC%9F.html" target="_self">
+          腾讯文档不能复制的解决办法，腾讯文档怎么复制？
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/03/%E8%85%BE%E8%AE%AF%E6%96%87%E6%A1%A3%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%8C%E8%85%BE%E8%AE%AF%E6%96%87%E6%A1%A3%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%EF%BC%9F.html" target="_self">
+        <div>
+          痛点腾讯文档不能复制怎么办？今天看到一篇腾讯文档，但是作者设置了不能编辑、复制。 登录之后，尝试了一下下载也不行，也就是说只能看网页，或者自己截图！ 想办法解决一下。 解决打开这篇腾讯文档，鼠标右键，查看源文件 搜索 1&lt;script type=&quot;text/javascript&quot; src=&quot;/dop-api/opendoc  找到这个js文件，点击打开这个文件，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-18 14:53" pubdate>
+              2021-03-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/permission-denied-publickey-%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" target="_self">
+          permission denied (publickey)问题的解决方法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/03/permission-denied-publickey-%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" target="_self">
+        <div>
+          解决方法： 第一步：更新ssh-key 执行 1ssh-keygen -t rsa -C &quot;yangzw@yuanbaopu.com&quot; -f ~/.ssh/ydzh_github  第二步：添加私钥 1ssh-add ~/.ssh/yuanbaopu_github  第三步：进入gitlab，重新设置ssh-key
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-15 17:56" pubdate>
+              2021-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/vue%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%AD%E5%A2%9E%E5%8A%A0commit-hash%E7%89%88%E6%9C%AC%E5%8F%B7.html" target="_self">
+          vue项目如何在页面中增加commit hash版本号
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/02/vue%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%AD%E5%A2%9E%E5%8A%A0commit-hash%E7%89%88%E6%9C%AC%E5%8F%B7.html" target="_self">
+        <div>
+          痛点每次发布项目之后，发现改的bug并没有生效，原因可能是代码部署失败，也可能是浏览器的缓存，需要一个标记能知道当前代码是否是最新版的代码 解决方案所以我们打算在html的head里，增加一个commit hash来表示当前的版本号 步骤项目是基于webpack的，我们引入webpack的一个插件Git revision webpack plugin 官方地址 git-revision-webpa
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-12 16:48" pubdate>
+              2021-02-12
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">#vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/01/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0pc%E7%AB%AF%E5%85%A8%E5%B1%8F%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD%E5%85%A8%E5%B1%8F.html" target="_self">
+          小程序实现pc端全屏视频直播全屏
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/01/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0pc%E7%AB%AF%E5%85%A8%E5%B1%8F%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD%E5%85%A8%E5%B1%8F.html" target="_self">
+        <div>
+          需求：因为小程序直播，有些是课程直播，由于手机屏幕太小，看不清楚，所以需要在pc端微信上打开小程序，来观看直播。默认情况下，pc端打开小程序都是竖屏的。 但我们看到有些小程序，比如：金山文档、腾讯文档等，打开就是横屏的，这个要怎么设置呢？  其实很简单，只需要在app.json中，新增一个resizeable属性即可 12345&#123;  &quot;pages&quot;: ...,  &q
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-13 14:06" pubdate>
+              2021-01-13
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#小程序</a>
+            
+              <a href="/tags/%E7%9B%B4%E6%92%AD/">#直播</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/%E6%B5%99%E9%87%8C%E5%8A%9E%E6%8E%A5%E5%85%A5%E5%BE%AE%E5%BA%94%E7%94%A8%E5%AE%9E%E6%88%98.html" target="_self">
+          浙里办接入微应用实战
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/09/%E6%B5%99%E9%87%8C%E5%8A%9E%E6%8E%A5%E5%85%A5%E5%BE%AE%E5%BA%94%E7%94%A8%E5%AE%9E%E6%88%98.html" target="_self">
+        <div>
+          浙里办接入微应用需求最近公司新接了一个需求，需要把已经开发好的H5应用上架到浙里办APP 第一步，用户体系对接首先需要加入钉钉组织—浙政钉 浙政钉→机关内部最多跑一次→用户认证体系对接申请提交申请 https://cdn.nlark.com/yuque/0/2020/png/653116/1594120733041-ddb09ecf-7e17-4d30-bf37-acf8024773ee.png?
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-25 10:43" pubdate>
+              2020-09-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/h5/">#h5</a>
+            
+              <a href="/tags/%E6%B5%99%E9%87%8C%E5%8A%9E/">#浙里办</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/06/UNI-APP%E6%90%AD%E9%85%8D%E5%B0%8F%E7%A8%8B%E5%BA%8Fci%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0.html" target="_self">
+          UNI-APP搭配小程序ci机器人完成项目自动上传
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/06/UNI-APP%E6%90%AD%E9%85%8D%E5%B0%8F%E7%A8%8B%E5%BA%8Fci%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%8C%E6%88%90%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0.html" target="_self">
+        <div>
+          痛点公司目前使用uni-app来开发小程序，由于小程序后台设置体验版只能是一个人，所以每次代码修改之后，都需要这个人拉取代码，然后再上传，很不方便。 所以引入了miniprogram-ci 什么是miniprogram-ci？miniprogram-ci 是从微信开发者工具中抽离的关于小程序&#x2F;小游戏项目代码的编译模块。 开发者可不打开小程序开发者工具，独立使用 miniprogram-c
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-17 11:20" pubdate>
+              2020-06-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/04/uni-app%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8.html" target="_self">
+          uni-app开发入门
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/04/uni-app%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8.html" target="_self">
+        <div>
+          uni-app主要使用vue的语法+小程序的标签和APIuni-app官方网站 开发规范为了实现多端兼容，综合考虑编译速度、运行性能等因素，uni-app 约定了如下开发规范：  页面文件遵循 Vue 单文件组件 (SFC) 规范 组件标签靠近小程序规范，详见uni-app 组件规范 接口能力（JS API）靠近微信小程序规范，但需将前缀 wx 替换为 uni，详见uni-app接口规范 数据绑定
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-15 10:46" pubdate>
+              2020-04-15
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/uniapp/">#uniapp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%82%E9%85%8Diphone-x.html" target="_self">
+          微信小程序适配iphone X
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/02/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%82%E9%85%8Diphone-x.html" target="_self">
+        <div>
+          原因：微信小程序在iphone x下打开时，会被底部home条遮挡尤其是当底部为button按钮的时候，很难点击按钮 解决方案：步骤一：在app.js文件中，创建全局变量，然后获取设备型号：12345678910111213141516globalData: &#123;  isIphoneX: false&#125;,wx.getSystemInfo(&#123;  success: funct
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-02-14 14:32" pubdate>
+              2020-02-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

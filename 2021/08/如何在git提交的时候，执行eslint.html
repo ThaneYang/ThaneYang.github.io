@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>如何在git提交的时候，执行eslint - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -284,7 +286,7 @@
 <h3 id="三、配置lint-staged"><a href="#三、配置lint-staged" class="headerlink" title="三、配置lint-staged"></a>三、配置lint-staged</h3><p>在项目根目录新建lint-staged.config.js</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stylus">module<span class="hljs-selector-class">.exports</span> = &#123;<br>    <span class="hljs-string">&#x27;*.&#123;js,jsx,ts,tsx,vue&#125;&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;prettier --write&#x27;</span>, <span class="hljs-string">&#x27;eslint --fix&#x27;</span>]</span>,<br>    <span class="hljs-string">&#x27;&#123;!(package)*.json,*.code-snippets,.!(browserslist)*rc&#125;&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;prettier --write--parser json&#x27;</span>]</span>,<br>    <span class="hljs-string">&#x27;package.json&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;prettier --write&#x27;</span>]</span>,<br>    <span class="hljs-string">&#x27;*.vue&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;prettier --write&#x27;</span>, <span class="hljs-string">&#x27;stylelint --fix&#x27;</span>]</span>,<br>    <span class="hljs-string">&#x27;*.&#123;scss,less,styl,css,html&#125;&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;stylelint --fix&#x27;</span>, <span class="hljs-string">&#x27;prettier --write&#x27;</span>]</span>,<br>    <span class="hljs-string">&#x27;*.md&#x27;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&#x27;prettier --write&#x27;</span>]</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="四、配置package-json"><a href="#四、配置package-json" class="headerlink" title="四、配置package.json"></a>四、配置package.json</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;lint:eslint&quot;</span>: <span class="hljs-string">&quot;eslint --fix --ext \&quot;./**/*.&#123;vue,less,css,scss&#125;\&quot;&quot;</span>,<br>    <span class="hljs-string">&quot;lint-staged&quot;</span>: <span class="hljs-string">&quot;lint-staged&quot;</span>,<br>    <span class="hljs-string">&quot;lint-staged:js&quot;</span>: <span class="hljs-string">&quot;eslint --ext .js,.jsx,.ts,.tsx &quot;</span>,<br>&#125;<br><span class="hljs-regexp">//</span> husky的其他配置可自行添加，这里只配置了git提交运行lint-staged<br><span class="hljs-string">&quot;husky&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;hooks&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;pre-commit&quot;</span>: <span class="hljs-string">&quot;lint-staged&quot;</span><br>				<span class="hljs-regexp">//</span> <span class="hljs-string">&quot;pre-push&quot;</span>: <span class="hljs-string">&quot;npm run test:unit&quot;</span><br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+<h3 id="四、配置package-json"><a href="#四、配置package-json" class="headerlink" title="四、配置package.json"></a>四、配置package.json</h3><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;lint:eslint&quot;</span>: <span class="hljs-string">&quot;eslint --fix --ext \&quot;</span>.<span class="hljs-comment">/**/</span>*.&#123;vue,less,css,scss&#125;\<span class="hljs-string">&quot;&quot;</span>,<br>    <span class="hljs-string">&quot;lint-staged&quot;</span>: <span class="hljs-string">&quot;lint-staged&quot;</span>,<br>    <span class="hljs-string">&quot;lint-staged:js&quot;</span>: <span class="hljs-string">&quot;eslint --ext .js,.jsx,.ts,.tsx &quot;</span>,<br>&#125;<br>// husky的其他配置可自行添加，这里只配置了git提交运行lint-staged<br><span class="hljs-string">&quot;husky&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;hooks&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;pre-commit&quot;</span>: <span class="hljs-string">&quot;lint-staged&quot;</span><br>				// <span class="hljs-string">&quot;pre-push&quot;</span>: <span class="hljs-string">&quot;npm run test:unit&quot;</span><br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
 
 <h3 id="五、配置代码检测忽略目录"><a href="#五、配置代码检测忽略目录" class="headerlink" title="五、配置代码检测忽略目录"></a>五、配置代码检测忽略目录</h3><p>.eslintignore</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">unpackage</span><br><span class="hljs-attribute">node_modules</span><br><span class="hljs-attribute">uview-ui</span><br></code></pre></td></tr></table></figure>
@@ -478,6 +480,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -623,6 +649,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

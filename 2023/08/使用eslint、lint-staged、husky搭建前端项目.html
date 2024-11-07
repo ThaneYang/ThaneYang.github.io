@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>使用eslint、lint-staged、husky搭建前端项目 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -280,7 +282,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">pnpm <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure>
 
 <p>没安装 pnpm 的需要提前安装一下</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i pnpm -g<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> pnpm -<span class="hljs-selector-tag">g</span><br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>新建 packages 目录，里面存放我们要开发的项目，例如 components、cli 等</li>
@@ -352,7 +354,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br>. <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">$0</span>&quot;</span>)</span>/_/husky.sh&quot;</span><br><br>npx lint-staged<br></code></pre></td></tr></table></figure>
 
 <p>在 package.json 中添加 lint-staged 配置</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>  <span class="hljs-string">&quot;lint-staged&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;*.&#123;js,jsx,vue,ts,tsx&#125;&quot;</span>: [<br>      <span class="hljs-string">&quot;eslint --ext .ts packages/*/**.ts --fix&quot;</span> <span class="hljs-regexp">//</span> 这里也可以写我们上面定义好的命令，如：pnpm lint:fix<br>    ],<br>    <span class="hljs-string">&quot;*.&#123;ts,tsx,js,jsx,cjs,mjs,css,scss,less,md,vue&#125;&quot;</span>: <span class="hljs-string">&quot;prettier --write&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;lint-staged&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;*.&#123;js,jsx,vue,ts,tsx&#125;&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-string">&quot;eslint --ext .ts packages/*/**.ts --fix&quot;</span> <span class="hljs-comment">// 这里也可以写我们上面定义好的命令，如：pnpm lint:fix</span><br>    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;*.&#123;ts,tsx,js,jsx,cjs,mjs,css,scss,less,md,vue&#125;&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;prettier --write&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="工具配合使用"><a href="#工具配合使用" class="headerlink" title="工具配合使用"></a>工具配合使用</h4><p>我们在项目的某个需求开发完，需要提交代码时会执行<code>git commit</code>命令，这个命令会触发 <code>husky</code> 的 <code>pre-commit</code> 钩子，在这个钩子中调用了<code>lint-staged</code>命令，将暂存区中的文件进行匹配并作为<code>eslint</code>和<code>prettier</code>的输入，分别进行语法检查修复和代码格式化。</p>
 <p>现在我们可以试着提交一下代码，如果不符合 eslint 校验规则的会自动修复，修复完成后需要再次提交</p>
@@ -545,6 +547,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -690,6 +716,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

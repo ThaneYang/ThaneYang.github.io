@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>本地通过webpack搭建react环境 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -282,7 +284,7 @@
 <h4 id="修改package-json"><a href="#修改package-json" class="headerlink" title="修改package.json"></a>修改package.json</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>   <span class="hljs-string">&quot;a&quot;</span> :<span class="hljs-string">&quot;webpack --config ./build/webpack.dev.conf.js&quot;</span>,<br>   <span class="hljs-string">&quot;b&quot;</span> :<span class="hljs-string">&quot;webpack-dev-server --config ./build/webpack.dev.conf.js&quot;</span>,<br>   <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;</span><span class="hljs-keyword">Error</span>: <span class="hljs-keyword">no</span> <span class="hljs-keyword">test</span> specified\<span class="hljs-string">&quot; &amp;&amp; exit 1&quot;</span><br> &#125;,<br></code></pre></td></tr></table></figure>
 
 <h4 id="devServer常用配置"><a href="#devServer常用配置" class="headerlink" title="devServer常用配置"></a>devServer常用配置</h4><p>&#x2F;build&#x2F;webpack.dev.conf.js</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs awk">const path = require(<span class="hljs-string">&#x27;path&#x27;</span>)<br>const HtmlWebpackPlugin = require(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>);<br>const HtmlWebpackPluginConfig=&#123;<br>    title: <span class="hljs-string">&#x27;hello,零和壹在线课堂&#x27;</span>, <span class="hljs-regexp">//</span> html5文件中&lt;title&gt;部分<br>    filename: <span class="hljs-string">&#x27;front.html&#x27;</span>, <span class="hljs-regexp">//</span> 默认是index.html，服务器中设置的首页是index.html，如果这里改成其它名字，那么devServer.index改为和它一样<br>    template: <span class="hljs-string">&#x27;./src/template/daqi.html&#x27;</span>, <span class="hljs-regexp">//</span> 如果觉得插件默认生成的hmtl5文件不合要求，可以指定一个模板，模板文件如果不存在，会报错，默认是在项目根目录下找模板文件，才模板为样板，将打包的js文件注入到body结尾处<br>    inject:<span class="hljs-string">&#x27;body&#x27;</span>, <span class="hljs-regexp">//</span> true|body|head|false，四种值，默认为true,true和body相同,是将js注入到body结束标签前,head将打包的js文件放在head结束前,false是不注入，这时得要手工在html中加js<br>&#125;<br>module.exports = &#123;<br>    entry: <span class="hljs-string">&#x27;./src/main&#x27;</span>, <span class="hljs-regexp">//m</span>ain.js中的js可以省略，前面的./不能省<br>    output:&#123;<br>        path:path.resolve(__dirname,<span class="hljs-string">&#x27;../dist&#x27;</span>),<br>        filename:<span class="hljs-string">&#x27;./dist/app-[hash].js&#x27;</span>,<br>        hashDigestLength: <span class="hljs-number">8</span> <span class="hljs-regexp">//</span> 默认hash长度<span class="hljs-number">20</span>，限制<span class="hljs-number">8</span>个字节<br>    &#125;,<br>    plugins: [new HtmlWebpackPlugin(HtmlWebpackPluginConfig)], <span class="hljs-regexp">//</span>先不配置插件，看看效果<br>    devServer: &#123;<br>      contentBase: path.join(__dirname, <span class="hljs-string">&quot;../dist&quot;</span>), <span class="hljs-regexp">//</span>网站的根目录为 根目录/dist<br>      port: <span class="hljs-number">9000</span>, <span class="hljs-regexp">//</span>端口改为<span class="hljs-number">9000</span><br>      host: <span class="hljs-string">&#x27;0.0.0.0&#x27;</span>, <span class="hljs-regexp">//</span>指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定如下：<span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>，外部需要通过本地ip地址来访问<br>      open:true, <span class="hljs-regexp">//</span> 自动打开浏览器<br>      index:<span class="hljs-string">&#x27;front.html&#x27;</span>, <span class="hljs-regexp">//</span> 与HtmlWebpackPlugin中配置filename一样<br>      inline:true, <span class="hljs-regexp">//</span> 默认为true, 意思是，在打包时会注入一段代码到最后的js文件中，用来监视页面的改动而自动刷新页面,当为false时，网页自动刷新的模式是iframe，也就是将模板页放在一个frame中<br>      hot:false,<br>      compress:true <span class="hljs-regexp">//</span>Gizp压缩，需要服务器开启<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPluginConfig</span>=&#123;<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;hello,零和壹在线课堂&#x27;</span>, <span class="hljs-comment">// html5文件中&lt;title&gt;部分</span><br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;front.html&#x27;</span>, <span class="hljs-comment">// 默认是index.html，服务器中设置的首页是index.html，如果这里改成其它名字，那么devServer.index改为和它一样</span><br>    <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;./src/template/daqi.html&#x27;</span>, <span class="hljs-comment">// 如果觉得插件默认生成的hmtl5文件不合要求，可以指定一个模板，模板文件如果不存在，会报错，默认是在项目根目录下找模板文件，才模板为样板，将打包的js文件注入到body结尾处</span><br>    <span class="hljs-attr">inject</span>:<span class="hljs-string">&#x27;body&#x27;</span>, <span class="hljs-comment">// true|body|head|false，四种值，默认为true,true和body相同,是将js注入到body结束标签前,head将打包的js文件放在head结束前,false是不注入，这时得要手工在html中加js</span><br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/main&#x27;</span>, <span class="hljs-comment">//main.js中的js可以省略，前面的./不能省</span><br>    <span class="hljs-attr">output</span>:&#123;<br>        <span class="hljs-attr">path</span>:path.<span class="hljs-title function_">resolve</span>(__dirname,<span class="hljs-string">&#x27;../dist&#x27;</span>),<br>        <span class="hljs-attr">filename</span>:<span class="hljs-string">&#x27;./dist/app-[hash].js&#x27;</span>,<br>        <span class="hljs-attr">hashDigestLength</span>: <span class="hljs-number">8</span> <span class="hljs-comment">// 默认hash长度20，限制8个字节</span><br>    &#125;,<br>    <span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(<span class="hljs-title class_">HtmlWebpackPluginConfig</span>)], <span class="hljs-comment">//先不配置插件，看看效果</span><br>    <span class="hljs-attr">devServer</span>: &#123;<br>      <span class="hljs-attr">contentBase</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&quot;../dist&quot;</span>), <span class="hljs-comment">//网站的根目录为 根目录/dist</span><br>      <span class="hljs-attr">port</span>: <span class="hljs-number">9000</span>, <span class="hljs-comment">//端口改为9000</span><br>      <span class="hljs-attr">host</span>: <span class="hljs-string">&#x27;0.0.0.0&#x27;</span>, <span class="hljs-comment">//指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定如下：0.0.0.0，外部需要通过本地ip地址来访问</span><br>      <span class="hljs-attr">open</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">// 自动打开浏览器</span><br>      <span class="hljs-attr">index</span>:<span class="hljs-string">&#x27;front.html&#x27;</span>, <span class="hljs-comment">// 与HtmlWebpackPlugin中配置filename一样</span><br>      <span class="hljs-attr">inline</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">// 默认为true, 意思是，在打包时会注入一段代码到最后的js文件中，用来监视页面的改动而自动刷新页面,当为false时，网页自动刷新的模式是iframe，也就是将模板页放在一个frame中</span><br>      <span class="hljs-attr">hot</span>:<span class="hljs-literal">false</span>,<br>      <span class="hljs-attr">compress</span>:<span class="hljs-literal">true</span> <span class="hljs-comment">//Gizp压缩，需要服务器开启</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <h4 id="创建好项目目录"><a href="#创建好项目目录" class="headerlink" title="创建好项目目录"></a>创建好项目目录</h4><p>项目根目录<br>│   package.json<br>├───node_modules<br>│       └╌╌ 下面是npm包<br>├───dist<br>│     └╌╌╌╌╌logo.jpg<br>├───build<br>│   ├╌╌╌╌╌ build.js<br>│   ├╌╌╌╌╌ webpack.base.conf.js<br>│   ├╌╌╌╌╌ webpack.dev.conf.js<br>│   └╌╌╌╌╌ webpack.prod.conf.js<br>├───src<br>│   ├╌╌╌╌╌ main.js<br>│   └╌╌╌╌╌tmp<br>│         ├╌╌╌╌╌home.js<br>│         ├╌╌╌╌╌about.js<br>│         └╌╌╌╌╌contact.js<br>│   └╌╌╌╌╌template<br>│         └╌╌╌╌╌daqi.html &#x2F;&#x2F; 为hmtl插件的模板<br>│   └╌╌╌╌╌images<br>│         └╌╌╌╌╌logo.jpg  </p>
 <h4 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> a<br></code></pre></td></tr></table></figure>
@@ -527,6 +529,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -672,6 +698,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

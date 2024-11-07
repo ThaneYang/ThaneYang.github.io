@@ -40,6 +40,8 @@
 <meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/image-20230213155515320.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>nodejs中脚手架的实现原理 - live威的个人博客_前端博客</title>
 
@@ -101,11 +103,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -201,7 +203,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -288,11 +290,11 @@
 
 <p>通过<code>which</code>查看<code>vue</code>命令的实际路径</p>
 <p><img src="http://yzwpic.weimayi.cn/img/image-20230213155515320.png" srcset="/img/loading.gif" lazyload alt="image-20230213155515320"></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/usr/</span>local/bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/local/bin<br></code></pre></td></tr></table></figure>
 
 <p><code>bin</code>目录存放所有可执行文件</p>
 <p><img src="http://yzwpic.weimayi.cn/img/image-20230213160832281.png" srcset="/img/loading.gif" lazyload alt="image-20230213160832281"></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">lrwxr-xr-x  <span class="hljs-number">1</span> yzw   admin    <span class="hljs-number">39</span>B Feb <span class="hljs-number">13</span> <span class="hljs-number">15</span>:<span class="hljs-number">22</span> vue -&gt; ..<span class="hljs-regexp">/lib/</span>node_modules<span class="hljs-regexp">/@vue/</span>cli<span class="hljs-regexp">/bin/</span>vue.js<br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">lrwxr</span>-xr-x  <span class="hljs-number">1</span> yzw   admin    <span class="hljs-number">39</span>B Feb <span class="hljs-number">13</span> <span class="hljs-number">15</span>:<span class="hljs-number">22</span> vue -&gt; ../lib/node_modules/@vue/cli/bin/vue.js<br></code></pre></td></tr></table></figure>
 
 <p>第一个字母<code>l</code>就表示软链接</p>
 <p>我们看到，其中的一项<code>vue</code>命令实际是指向后面的地址</p>
@@ -310,7 +312,7 @@
 <h2 id="二、全局安装-vue-cli时发生了什么？"><a href="#二、全局安装-vue-cli时发生了什么？" class="headerlink" title="二、全局安装@vue/cli时发生了什么？"></a>二、全局安装<code>@vue/cli</code>时发生了什么？</h2><p>全局安装就是把<code>@vue/cli</code>下载到<code>/usr/local/lib/node_modules/</code>目录下</p>
 <p>下载完成之后，就会解析package.json文件下的bin</p>
 <p>发现有配置bin，就会在 node的bin目录下，创建一个软链接</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/usr/</span>local/bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/local/bin<br></code></pre></td></tr></table></figure>
 
 <h2 id="三、执行vue命令时发生了什么？为什么vue指向一个js文件，我们却可以直接通过vue命令执行它？"><a href="#三、执行vue命令时发生了什么？为什么vue指向一个js文件，我们却可以直接通过vue命令执行它？" class="headerlink" title="三、执行vue命令时发生了什么？为什么vue指向一个js文件，我们却可以直接通过vue命令执行它？"></a>三、执行<code>vue</code>命令时发生了什么？为什么<code>vue</code>指向一个js文件，我们却可以直接通过<code>vue</code>命令执行它？</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">which</span> vue<br></code></pre></td></tr></table></figure>
 
@@ -341,11 +343,11 @@
 
 <p>输出<code>/Users/yzw/test-projects/vue-test</code></p>
 <p>2.进入node的环境变量</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/usr/</span>local/bin<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /usr/local/bin<br></code></pre></td></tr></table></figure>
 
 <p>3.创建软链接</p>
 <p>创建一个全局指令<code>vuetest</code>指向<code>test.js</code></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">ln -s <span class="hljs-regexp">/Users/y</span>zw<span class="hljs-regexp">/test-projects/</span>vue-test/test.js vuetest<br></code></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">ln -s /Users/yzw/<span class="hljs-keyword">test</span>-projects/vue-<span class="hljs-keyword">test</span>/<span class="hljs-keyword">test</span><span class="hljs-number">.</span><span class="hljs-keyword">js</span> vuetest<br></code></pre></td></tr></table></figure>
 
 <p><img src="http://yzwpic.weimayi.cn/img/image-20230214124758682.png" srcset="/img/loading.gif" lazyload alt="image-20230214124758682"></p>
 <p>4.全局命令创建完成</p>
@@ -537,6 +539,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -682,6 +708,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>babel使用心得 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -290,20 +292,20 @@
 <h4 id="插一下题外话关于babel-preset-react"><a href="#插一下题外话关于babel-preset-react" class="headerlink" title="插一下题外话关于babel-preset-react"></a>插一下题外话关于babel-preset-react</h4><p>下载github里的babel项目，里面的packages目录下包含了很多的babel转移器和插件</p>
 <h5 id="一、babel-x2F-packages里面包括了转译插件transform-react-jsx"><a href="#一、babel-x2F-packages里面包括了转译插件transform-react-jsx" class="headerlink" title="一、babel&#x2F;packages里面包括了转译插件transform-react-jsx"></a>一、babel&#x2F;packages里面包括了转译插件transform-react-jsx</h5><p>在目录babel-plugin-transform-react-jsx下</p>
 <p>其中package.json</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;@babel/plugin-transform-react-jsx&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;<span class="hljs-variable">@babel</span>/plugin-transform-react-jsx&quot;</span><br></code></pre></td></tr></table></figure>
 <p>所以引用或者安装这个转译插件，可以通过</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> install --save-dev @babel/plugin-transform-react-jsx<br></code></pre></td></tr></table></figure>
 <p>参考<a target="_blank" rel="noopener" href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx">github</a></p>
 <p>安装后显示的package.json</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-string">&quot;devDependencies&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;@babel/plugin-transform-react-jsx&quot;</span>: <span class="hljs-string">&quot;^7.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-string">&quot;devDependencies&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;<span class="hljs-variable">@babel</span>/plugin-transform-react-jsx&quot;</span>: <span class="hljs-string">&quot;^7.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>但是<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/babel-plugin-transform-react-jsx">npm</a>里的安装是通过</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm install <span class="hljs-attr">--save-dev</span> babel-plugin-<span class="hljs-attribute">transform</span>-react-jsx<br></code></pre></td></tr></table></figure>
 <p>安装后显示的package.json</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">&quot;devDependencies&quot;: &#123;<br>    &quot;babel-plugin-<span class="hljs-attribute">transform</span>-react-jsx&quot;: <span class="hljs-string">&quot;^6.24.1&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>对比了一下，两者代码虽然不一致，实现的功能是一致的</p>
-<p>唯一的区别就是<br>npm安装的可以单独作为插件使用，而github安装的则不行，主要因为版本的问题，因为@babel&#x2F;<a href="mailto:&#112;&#108;&#x75;&#103;&#105;&#110;&#45;&#x74;&#x72;&#x61;&#110;&#x73;&#x66;&#111;&#x72;&#109;&#45;&#x72;&#101;&#x61;&#99;&#116;&#45;&#x6a;&#115;&#x78;&#x40;&#55;&#46;&#x30;&#x2e;&#x30;">&#112;&#108;&#x75;&#103;&#105;&#110;&#45;&#x74;&#x72;&#x61;&#110;&#x73;&#x66;&#111;&#x72;&#109;&#45;&#x72;&#101;&#x61;&#99;&#116;&#45;&#x6a;&#115;&#x78;&#x40;&#55;&#46;&#x30;&#x2e;&#x30;</a>需要<a href="mailto:&#x62;&#97;&#x62;&#x65;&#108;&#x2d;&#x63;&#111;&#114;&#x65;&#x40;&#x37;&#46;&#48;&#x2e;&#x30;">&#x62;&#97;&#x62;&#x65;&#108;&#x2d;&#x63;&#111;&#114;&#x65;&#x40;&#x37;&#46;&#48;&#x2e;&#x30;</a>支持，而目前项目里是<a href="mailto:&#98;&#x61;&#98;&#101;&#x6c;&#45;&#x63;&#x6f;&#x72;&#x65;&#64;&#x36;&#46;&#x32;&#x36;&#46;&#x33;">&#98;&#x61;&#98;&#101;&#x6c;&#45;&#x63;&#x6f;&#x72;&#x65;&#64;&#x36;&#46;&#x32;&#x36;&#46;&#x33;</a></p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>: [<span class="hljs-string">&quot;@babel/plugin-transform-react-jsx&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>唯一的区别就是<br>npm安装的可以单独作为插件使用，而github安装的则不行，主要因为版本的问题，因为@babel&#x2F;<a href="mailto:&#x70;&#x6c;&#x75;&#103;&#105;&#110;&#45;&#x74;&#114;&#x61;&#x6e;&#115;&#102;&#111;&#114;&#x6d;&#x2d;&#114;&#101;&#x61;&#x63;&#116;&#x2d;&#106;&#x73;&#120;&#x40;&#55;&#46;&#x30;&#46;&#48;">&#x70;&#x6c;&#x75;&#103;&#105;&#110;&#45;&#x74;&#114;&#x61;&#x6e;&#115;&#102;&#111;&#114;&#x6d;&#x2d;&#114;&#101;&#x61;&#x63;&#116;&#x2d;&#106;&#x73;&#120;&#x40;&#55;&#46;&#x30;&#46;&#48;</a>需要<a href="mailto:&#98;&#x61;&#98;&#x65;&#108;&#x2d;&#99;&#111;&#x72;&#101;&#x40;&#55;&#46;&#x30;&#46;&#48;">&#98;&#x61;&#98;&#x65;&#108;&#x2d;&#99;&#111;&#x72;&#101;&#x40;&#55;&#46;&#x30;&#46;&#48;</a>支持，而目前项目里是<a href="mailto:&#98;&#97;&#98;&#101;&#108;&#45;&#99;&#111;&#114;&#x65;&#x40;&#54;&#46;&#x32;&#54;&#x2e;&#x33;">&#98;&#97;&#98;&#101;&#108;&#45;&#99;&#111;&#114;&#x65;&#x40;&#54;&#46;&#x32;&#54;&#x2e;&#x33;</a></p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>: [<span class="hljs-string">&quot;<span class="hljs-variable">@babel</span>/plugin-transform-react-jsx&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>:[<span class="hljs-string">&quot;transform-react-jsx&quot;</span>]<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>经过实测发现以下这种形式会报错</p>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>:[<span class="hljs-string">&quot;transform-react-jsx&quot;</span>, &#123;<br>    <span class="hljs-string">&quot;pragma&quot;</span>: <span class="hljs-string">&quot;dom&quot;</span><br>  &#125;]<br>&#125;<br><br></code></pre></td></tr></table></figure>
@@ -338,7 +340,7 @@
 <p>此时的package.json如下</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;devDependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;babel-cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^6.26.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;babel-loader&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^7.1.1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;babel-plugin-transform-react-jsx&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^6.24.1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webpack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.2.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webpack-cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.1.2&quot;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="在根目录下创建webpack-config-js文件"><a href="#在根目录下创建webpack-config-js文件" class="headerlink" title="在根目录下创建webpack.config.js文件"></a>在根目录下创建webpack.config.js文件</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs awk">var path = require(<span class="hljs-string">&quot;path&quot;</span>);<br>module.exports = &#123;<br>  entry: <span class="hljs-string">&#x27;./src/vd.js&#x27;</span>,<br>  output: &#123;<br>    path: path.resolve(__dirname,<span class="hljs-string">&quot;lib&quot;</span>),<br>    filename: <span class="hljs-string">&#x27;vd.compiled.js&#x27;</span>,<br>  &#125;,<br>  module: &#123;<br>    loaders: [&#123;<br>      test: <span class="hljs-regexp">/\.js$/</span>,<br>      exclude: <span class="hljs-regexp">/node_modules/</span>,<br>      loader: <span class="hljs-string">&#x27;babel-loader&#x27;</span><br>      <span class="hljs-regexp">//</span> query:&#123;<br>      <span class="hljs-regexp">//</span>   plugins: [<span class="hljs-string">&quot;transform-react-jsx&quot;</span>]<br>      <span class="hljs-regexp">//</span>   presets:[<span class="hljs-string">&quot;env&quot;</span>] <span class="hljs-regexp">//</span> 需要先npm install --save-dev babel-preset-env<br>      <span class="hljs-regexp">//</span> &#125;<br>    &#125;]<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h4 id="在根目录下创建webpack-config-js文件"><a href="#在根目录下创建webpack-config-js文件" class="headerlink" title="在根目录下创建webpack.config.js文件"></a>在根目录下创建webpack.config.js文件</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs lua">var <span class="hljs-built_in">path</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-built_in">module</span>.exports = &#123;<br>  entry: <span class="hljs-string">&#x27;./src/vd.js&#x27;</span>,<br>  <span class="hljs-built_in">output</span>: &#123;<br>    <span class="hljs-built_in">path</span>: <span class="hljs-built_in">path</span>.resolve(__dirname,<span class="hljs-string">&quot;lib&quot;</span>),<br>    filename: <span class="hljs-string">&#x27;vd.compiled.js&#x27;</span>,<br>  &#125;,<br>  <span class="hljs-built_in">module</span>: &#123;<br>    <span class="hljs-built_in">loaders</span>: [&#123;<br>      test: /\.js$/,<br>      exclude: /node_modules/,<br>      loader: <span class="hljs-string">&#x27;babel-loader&#x27;</span><br>      // query:&#123;<br>      //   plugins: [<span class="hljs-string">&quot;transform-react-jsx&quot;</span>]<br>      //   presets:[<span class="hljs-string">&quot;env&quot;</span>] // 需要先npm install <span class="hljs-comment">--save-dev babel-preset-env</span><br>      // &#125;<br>    &#125;]<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>entry为入口文件，我们选择当前目录下，src文件夹下的person.js文件作为入口。output为输出选项，path为输出的目录，filename为输出文件名。query选项为.babelrc中的配置选项。在webpack中设置了query字段后，就不再需要.babelrc文件了。</p>
 <h4 id="运行webpack"><a href="#运行webpack" class="headerlink" title="运行webpack"></a>运行webpack</h4><p>在命令行中执行webpack，webpack会自动读取webpack.config.js文件中的配置。然后对我们配置的文件进行转译。</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">webpack</span><br></code></pre></td></tr></table></figure>
@@ -532,6 +534,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -677,6 +703,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>微信小程序内嵌H5页面生成分享图片并下载的坑 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -301,7 +303,7 @@
 <p>canvas是可以绘制跨域的图片，但是此时的canvas是受到<strong>污染</strong>的，污染状态下的canvas是无法通过toDataUrl()来生成图片的。</p>
 <p>解决方案：</p>
 <p>方案 | 尝试 | 结局 | 分析原因<br>—|—|—|—|—<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3f6fd4f6dd70">方案一</a> | 一般出现跨域, 只需要在图片设置这个属性: crossorigin&#x3D;”anonymous”允许跨域即可 | 惨败 | 你设置crossOrigin&#x3D;”anonymous”是表明你想跨域获取这张图片，好用在canvas.toDataURL()上，但是服务端不一定同意啊，服务端添加了access…这个字段并且value是*或者你网站的域名才行，否则就认为你无权用，结果就是无法显示<br><a target="_blank" rel="noopener" href="https://github.com/niklasvh/html2canvas/issues/1674">方案二</a> | 通过传入html2canvas的配置项中增加{ useCORS: true, useTainted: false } | 惨败 | 看了下html2canvas源码，也是通过设置crossOrigin&#x3D;”anonymous”来实现图片跨域，失败原因同上<br>方案三 | 前端写一个node中间层来进行服务器转发 | 暂未尝试 | 考虑百度地图的图片是实时变化加载的，获取具体跨域图片的url地址难度较大<br>最终方案 | 不用百度地图作为背景，改为用一张静态图片 | 勉强交付 </p>
-<h3 id="3-2保存图片"><a href="#3-2保存图片" class="headerlink" title="3.2保存图片"></a>3.2保存图片</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 在本地进行文件保存</span><br><span class="hljs-comment"> * @param  &#123;String&#125; data     要保存到本地的图片数据</span><br><span class="hljs-comment"> * @param  &#123;String&#125; filename 文件名</span><br><span class="hljs-comment"> */</span><br>save<span class="hljs-constructor">File(<span class="hljs-params">data</span>, <span class="hljs-params">filename</span>)</span> &#123;<br>    const save_link = document.create<span class="hljs-constructor">ElementNS(&#x27;<span class="hljs-params">http</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">www</span>.<span class="hljs-params">w3</span>.<span class="hljs-params">org</span><span class="hljs-operator">/</span>1999<span class="hljs-operator">/</span><span class="hljs-params">xhtml</span>&#x27;, &#x27;<span class="hljs-params">a</span>&#x27;)</span>;<br>    save_link.href = data;<br>    save_link.download = filename;<br><br>    const event = document.create<span class="hljs-constructor">Event(&#x27;MouseEvents&#x27;)</span>;<br>    event.init<span class="hljs-constructor">MouseEvent(&#x27;<span class="hljs-params">click</span>&#x27;, <span class="hljs-params">true</span>, <span class="hljs-params">false</span>, <span class="hljs-params">window</span>, 0, 0, 0, 0, 0, <span class="hljs-params">false</span>, <span class="hljs-params">false</span>, <span class="hljs-params">false</span>, <span class="hljs-params">false</span>, 0, <span class="hljs-params">null</span>)</span>;<br>    save_link.dispatch<span class="hljs-constructor">Event(<span class="hljs-params">event</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-2保存图片"><a href="#3-2保存图片" class="headerlink" title="3.2保存图片"></a>3.2保存图片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 在本地进行文件保存</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>  &#123;<span class="hljs-type">String</span>&#125; data     要保存到本地的图片数据</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span>  &#123;<span class="hljs-type">String</span>&#125; filename 文件名</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">saveFile</span>(<span class="hljs-params">data, filename</span>) &#123;<br>    <span class="hljs-keyword">const</span> save_link = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElementNS</span>(<span class="hljs-string">&#x27;http://www.w3.org/1999/xhtml&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>);<br>    save_link.<span class="hljs-property">href</span> = data;<br>    save_link.<span class="hljs-property">download</span> = filename;<br><br>    <span class="hljs-keyword">const</span> event = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createEvent</span>(<span class="hljs-string">&#x27;MouseEvents&#x27;</span>);<br>    event.<span class="hljs-title function_">initMouseEvent</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-variable language_">window</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">null</span>);<br>    save_link.<span class="hljs-title function_">dispatchEvent</span>(event);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>然而微信点击之后，没反应…<br>然后就去翻微信的<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115">jssdk</a></p>
 <ol>
 <li>下载图片接口downloadImage，仅支持由uploadImage接口上传的图片</li>
@@ -498,6 +500,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -643,6 +669,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

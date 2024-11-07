@@ -33,6 +33,8 @@
 <meta name="twitter:image" content="http://yzwpic.weimayi.cn/img/image-20231019154657332.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>uniapp开发云打包详细流程 - live威的个人博客_前端博客</title>
 
@@ -94,11 +96,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -194,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -294,7 +296,7 @@
 
 <p>以上命令运行完成后就会生成证书，路径为“D:\test.keystore”(路径不固定)，路径为cmd工作目录下生成的证书路径。</p>
 <p>查看证书信息可以使用以下命令查看：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">keytool -list -v -keystore test.keystore  <br><br>Enter keystore password: <span class="hljs-regexp">//</span>输入密码，回车<br></code></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata">keytool -<span class="hljs-keyword">list</span> -v -keystore <span class="hljs-keyword">test</span>.keystore  <br><br>Enter keystore password: <span class="hljs-comment">//输入密码，回车</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="3-开始打包"><a href="#3-开始打包" class="headerlink" title="3. 开始打包"></a>3. 开始打包</h4><p>完成以上操作其他选项可以使用默认选项，最后点击右下角打包就开始进入打包程序了。根据排队人数，等待时间可能会过长。最后生成的apk文件在项目的unpackage&#x2F;release&#x2F;apk文件夹下。</p>
 <ul>
@@ -490,6 +492,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -635,6 +661,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

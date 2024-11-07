@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>yeoman自定义脚手架使用心得 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -338,7 +340,7 @@ args是在命令行中直接传递的。 如:yo yzw-pc-web webapp,接受键值�
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">writing() &#123;<br>    <span class="hljs-comment">//在根目录下创建文件夹</span><br>    mkdirp(<span class="hljs-string">&#x27;lib/1&#x27;</span>);<br><br>    <span class="hljs-comment">// 复制templates目录中的index.html到目标目录（先在templates里创建index.html文件）</span><br>    <span class="hljs-comment">// 会自动生成src目录</span><br>    <span class="hljs-keyword">this</span>.fs.copyTpl(<br>      <span class="hljs-keyword">this</span>.templatePath(<span class="hljs-string">&#x27;src/index.html&#x27;</span>),<br>      <span class="hljs-keyword">this</span>.destinationPath(<span class="hljs-string">&#x27;src/index.html&#x27;</span>),<br>      &#123; title: <span class="hljs-string">&#x27;Templating with Yeoman&#x27;</span> &#125;<br>    );<br><br>    <span class="hljs-keyword">this</span>.fs.copy(<br>      <span class="hljs-keyword">this</span>.templatePath(<span class="hljs-string">&#x27;dummyfile.txt&#x27;</span>),<br>      <span class="hljs-keyword">this</span>.destinationPath(<span class="hljs-string">&#x27;dummyfile.txt&#x27;</span>)<br>    );<br>    <span class="hljs-keyword">this</span>.fs.copy(<br>      <span class="hljs-keyword">this</span>.templatePath(<span class="hljs-string">&#x27;common&#x27;</span>),<br>      <span class="hljs-keyword">this</span>.destinationPath(<span class="hljs-string">&#x27;common&#x27;</span>)<br>    );<br>    <span class="hljs-keyword">this</span>.fs.copyTpl(<br>      <span class="hljs-keyword">this</span>.templatePath(<span class="hljs-string">&#x27;package.json&#x27;</span>),<br>      <span class="hljs-keyword">this</span>.destinationPath(<span class="hljs-string">&#x27;package.json&#x27;</span>),<br>      &#123;<br>        appname: <span class="hljs-keyword">this</span>.props.appname,<br>        cool: <span class="hljs-keyword">this</span>.props.cool,<br>        username: <span class="hljs-keyword">this</span>.props.username,<br>        description: <span class="hljs-keyword">this</span>.props.projectDesc,<br>        projectLicense: <span class="hljs-keyword">this</span>.props.projectLicense<br>      &#125;<br>    );<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 <ol start="7">
-<li>install<br>工程目录搭建的时候就会自动安装package.json里的依赖包<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">install() &#123;<br>    <span class="hljs-regexp">//</span> 执行安装包，需要templates/package.json<br>    this.installDependencies();<br>    <span class="hljs-regexp">//</span>使用npm安装依赖lodash<br>    <span class="hljs-regexp">//</span> this.npmInstall([<span class="hljs-string">&#x27;lodash&#x27;</span>], &#123; <span class="hljs-string">&#x27;save-dev&#x27;</span>: true &#125;);<br>  &#125;<br></code></pre></td></tr></table></figure></li>
+<li>install<br>工程目录搭建的时候就会自动安装package.json里的依赖包<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">install</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 执行安装包，需要templates/package.json</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">installDependencies</span>();<br>    <span class="hljs-comment">//使用npm安装依赖lodash</span><br>    <span class="hljs-comment">// this.npmInstall([&#x27;lodash&#x27;], &#123; &#x27;save-dev&#x27;: true &#125;);</span><br>  &#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="实际项目中使用脚手架"><a href="#实际项目中使用脚手架" class="headerlink" title="实际项目中使用脚手架"></a>实际项目中使用脚手架</h4><p>进入项目目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> projects<br></code></pre></td></tr></table></figure>
@@ -529,6 +531,30 @@ args是在命令行中直接传递的。 如:yo yzw-pc-web webapp,接受键值�
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -674,6 +700,8 @@ args是在命令行中直接传递的。 如:yo yzw-pc-web webapp,接受键值�
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

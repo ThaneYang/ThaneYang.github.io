@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>11个有用的前端技巧 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -291,7 +293,7 @@
 
 <p>这个属性与 <code>display: none;</code> 类似，会让元素从页面中消失。</p>
 <h3 id="5-使用-inset-简化定位"><a href="#5-使用-inset-简化定位" class="headerlink" title="5. 使用 inset 简化定位"></a>5. 使用 <code>inset</code> 简化定位</h3><p>CSS 中使用 <code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code> 进行绝对定位有时显得冗长，可以使用 <code>inset</code> 来简化这个过程：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 原始方法 */</span><br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">/* 使用 inset 简化 */</span><br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  inset: <span class="hljs-number">0</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 原始方法 */</span><br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">/* 使用 inset 简化 */</span><br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">position</span>: absolute;<br>  <span class="hljs-attribute">inset</span>: <span class="hljs-number">0</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这不仅让 CSS 更简洁，还提高了代码的可读性。</p>
 <h3 id="6-高级-console-调试技巧"><a href="#6-高级-console-调试技巧" class="headerlink" title="6. 高级 console 调试技巧"></a>6. 高级 console 调试技巧</h3><p>除了常见的 <code>console.log()</code>，还可以利用以下console 方法来调试：</p>
@@ -308,7 +310,7 @@
 <ul>
 <li><code>console.time()</code> 和 <code>console.timeEnd()</code>：测量代码执行的时间：</li>
 </ul>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">console</span>.time(<span class="hljs-string">&#x27;代码运行时间&#x27;</span>);<br><span class="hljs-comment">// 模拟耗时代码</span><br><span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">&#x27;代码运行时间&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">console</span>.<span class="hljs-built_in">time</span>(<span class="hljs-string">&#x27;代码运行时间&#x27;</span>);<br><span class="hljs-comment">// 模拟耗时代码</span><br><span class="hljs-built_in">console</span>.timeEnd(<span class="hljs-string">&#x27;代码运行时间&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>console.clear()：清空日志：</li>
@@ -317,7 +319,7 @@
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">console</span>.clear()<br></code></pre></td></tr></table></figure>
 
 <h3 id="7-防止移动端下拉刷新"><a href="#7-防止移动端下拉刷新" class="headerlink" title="7. 防止移动端下拉刷新"></a>7. 防止移动端下拉刷新</h3><p>当用户在移动端使用应用时，可能会无意中触发下拉刷新。通过以下 CSS 属性，可以防止这个行为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  overscroll-behavior-y: contain;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  overscroll-behavior-<span class="hljs-attribute">y</span>: contain;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这个属性同样适用于阻止模态框滚动到边界时滚动背景页面。</p>
 <h3 id="8-让网页可编辑"><a href="#8-让网页可编辑" class="headerlink" title="8. 让网页可编辑"></a>8. 让网页可编辑</h3><p>使用 <code>contentEditable</code> 属性可以将整个网页变成可编辑的状态：</p>
@@ -522,6 +524,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -667,6 +693,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

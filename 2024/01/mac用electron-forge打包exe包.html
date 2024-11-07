@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>mac用electron-forge打包exe包 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -278,7 +280,7 @@
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> install --save-dev @electron-forge/cli<br>npx electron-forge <span class="hljs-keyword">import</span><br></code></pre></td></tr></table></figure>
 
 <p>转换脚本完成后，Forge 会将一些脚本添加到您的 <code>package.json</code> 文件中。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>...<br><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;electron-forge start&quot;</span>,<br>  <span class="hljs-string">&quot;package&quot;</span>: <span class="hljs-string">&quot;electron-forge package&quot;</span>,<br>  <span class="hljs-string">&quot;make&quot;</span>: <span class="hljs-string">&quot;electron-forge make&quot;</span><br>&#125;,<br><span class="hljs-regexp">//</span>...<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">//...</span><br><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron-forge start&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;package&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron-forge package&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;make&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron-forge make&quot;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><span class="hljs-comment">//...</span><br></code></pre></td></tr></table></figure>
 
 <h4 id="打包exe包"><a href="#打包exe包" class="headerlink" title="打包exe包"></a>打包exe包</h4><p>首先在package.json，scripts里面新增</p>
 <p>–arch x64代表64位，<br>–platform win32 代表windows包</p>
@@ -293,7 +295,7 @@
 <p>原因是mac没有windows环境，需要运行brew install –cask wine-stable安装一下</p>
 <p>结果brew版本太低，外网不稳定，又升不上去</p>
 <p>后来又找了个国内镜像<br>直接运行，按照中文提示操作，可以直接升级brew</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/bin/</span>zsh -c <span class="hljs-string">&quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span> speed<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/bin/zsh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span> speed<br></code></pre></td></tr></table></figure>
 
 <p>最后打包成功！</p>
 <h4 id="打包注意事项"><a href="#打包注意事项" class="headerlink" title="打包注意事项"></a>打包注意事项</h4><p>这里有两种形式的打包，分别在不同场景下使用<br><code>electron-forge package</code> 只是打包成一个目录到out目录下，注意这种打包一般用于调试，并不是用于分发<br><code>electron-forge make</code> 这个才会打出真正的分发包，放在out\make目录下<br>两个命令都可以使用–arch 和–platform参数来指定系统结构和平台，但是需要注意的是只能打包你当前机器的平台包，比如你用OSX是无法打出windows平台安装包的；这两个参数不填写的话，默认和当前系统一致<br>另外，make是用squirrel打出来的包，安装后是放在%localappdata%下的</p>
@@ -484,6 +486,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -629,6 +655,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

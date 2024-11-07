@@ -30,6 +30,8 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>移动端适配问题 - live威的个人博客_前端博客</title>
 
@@ -91,11 +93,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -191,7 +193,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -277,7 +279,7 @@
                 <h3 id="一、首先解释几个概念"><a href="#一、首先解释几个概念" class="headerlink" title="一、首先解释几个概念"></a>一、首先解释几个概念</h3><h4 id="物理像素-physical-pixel"><a href="#物理像素-physical-pixel" class="headerlink" title="物理像素(physical pixel)"></a>物理像素(physical pixel)</h4><p>一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。</p>
 <h4 id="设备独立像素-density-independent-pixel"><a href="#设备独立像素-density-independent-pixel" class="headerlink" title="设备独立像素(density-independent pixel)"></a>设备独立像素(density-independent pixel)</h4><p>设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像素。 所以说，物理像素和设备独立像素之间存在着一定的对应关系，这就是接下来要说的设备像素比。</p>
 <h4 id="设备像素比-device-pixel-ratio"><a href="#设备像素比-device-pixel-ratio" class="headerlink" title="设备像素比(device pixel ratio )"></a>设备像素比(device pixel ratio )</h4><p>设备像素比(简称dpr)定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式的得到：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">设备像素比 = 物理像素 / 设备独立像素 <span class="hljs-comment">// 在某一方向上，x方向或者y方向</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">设备像素比 <span class="hljs-punctuation">=</span> 物理像素 / 设备独立像素 <span class="hljs-comment">// 在某一方向上，x方向或者y方向</span><br></code></pre></td></tr></table></figure>
 
 <p>你在开发时写的px和最终渲染显示的物理像素数不是一比一的，可能一个px对应2个物理像素，可能3个物理像素，设备显示的物理像素数和你css的px数的比值就叫做设备像素比（device pixel radio），简称dpr。</p>
 <p>在javascript中，可以通过window.devicePixelRatio获取到当前设备的dpr。</p>
@@ -296,7 +298,7 @@
 <p>因为不同的手机，每一行能显示的css像素总数是不同的。<br>比如<br>iphone5能显示的css像素尺寸为320 x 568<br>iphone6能显示的css像素尺寸为375 x 667</p>
 <p>如果宽度写死为320px，在iphone5下是占满整行的，但是在iphone6下确没有满整行。</p>
 <p>rem就是解决这个问题的，rem不是具体的px，rem具体显示多少像素，是根据根元素的font-size来计算的，比如说你设置了1.2rem，根元素的font-size是100px，那么这个元素动态算出来的px数就是120px。</p>
-<h5 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h5><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">&lt;script&gt;<br>    <span class="hljs-keyword">let</span> doc = window.document<br>    <span class="hljs-keyword">let</span> baseWidth = <span class="hljs-number">750</span> <span class="hljs-comment">// 这里是根据设计稿的尺寸来的</span><br>    <span class="hljs-keyword">let</span> documentHTML = doc.documentElement<br>    <span class="hljs-keyword">let</span> pixelRatio = <span class="hljs-number">2</span><br><br>    <span class="hljs-keyword">function</span> setRootFont <span class="hljs-literal">()</span> &#123;<br>      <span class="hljs-keyword">let</span> docWidth = documentHTML.get<span class="hljs-constructor">BoundingClientRect()</span>.width<br>      <span class="hljs-keyword">let</span> scale = docWidth<span class="hljs-operator"> / </span>baseWidth<br>      <span class="hljs-keyword">let</span> setSize = scale<span class="hljs-operator"> * </span><span class="hljs-number">100</span><br>      documentHTML.style.fontSize = setSize + &#x27;px&#x27;<br>      <span class="hljs-keyword">let</span> realSize = parse<span class="hljs-constructor">Float(<span class="hljs-params">global</span>.<span class="hljs-params">getComputedStyle</span>(<span class="hljs-params">document</span>.<span class="hljs-params">documentElement</span>)</span>.fontSize, <span class="hljs-number">10</span>)<br>      <span class="hljs-comment">// android webview 里 html font-size 因设置系统字体大小受到影响</span><br>      <span class="hljs-keyword">if</span> (realSize != parse<span class="hljs-constructor">Float(<span class="hljs-params">setSize</span>.<span class="hljs-params">toFixed</span>(4)</span>, <span class="hljs-number">10</span>)) &#123;<br>        setSize = (setSize<span class="hljs-operator"> * </span>setSize)<span class="hljs-operator"> / </span>realSize<br>        documentHTML.style.fontSize = setSize + &#x27;px&#x27;<br>      &#125;<br>      <span class="hljs-comment">// 设置data-dpr属性，留作的css hack之用</span><br>      pixelRatio = global.devicePixelRatio<span class="hljs-operator"> === </span><span class="hljs-number">3</span> ? <span class="hljs-number">3</span> : <span class="hljs-number">2</span><br>      documentHTML.set<span class="hljs-constructor">Attribute(&#x27;<span class="hljs-params">data</span>-<span class="hljs-params">dpr</span>&#x27;, <span class="hljs-params">pixelRatio</span>)</span><br>    &#125;<br><br>    set<span class="hljs-constructor">RootFont()</span><br>    window.add<span class="hljs-constructor">EventListener(&#x27;<span class="hljs-params">resize</span>&#x27;, <span class="hljs-params">setRootFont</span>, <span class="hljs-params">false</span>)</span><br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<h5 id="适配方法"><a href="#适配方法" class="headerlink" title="适配方法"></a>适配方法</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> doc = <span class="hljs-variable language_">window</span>.<span class="hljs-property">document</span></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> baseWidth = <span class="hljs-number">750</span> <span class="hljs-comment">// 这里是根据设计稿的尺寸来的</span></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> documentHTML = doc.<span class="hljs-property">documentElement</span></span><br><span class="language-javascript">    <span class="hljs-keyword">let</span> pixelRatio = <span class="hljs-number">2</span></span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">setRootFont</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">      <span class="hljs-keyword">let</span> docWidth = documentHTML.<span class="hljs-title function_">getBoundingClientRect</span>().<span class="hljs-property">width</span></span><br><span class="language-javascript">      <span class="hljs-keyword">let</span> scale = docWidth / baseWidth</span><br><span class="language-javascript">      <span class="hljs-keyword">let</span> setSize = scale * <span class="hljs-number">100</span></span><br><span class="language-javascript">      documentHTML.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span> = setSize + <span class="hljs-string">&#x27;px&#x27;</span></span><br><span class="language-javascript">      <span class="hljs-keyword">let</span> realSize = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-variable language_">global</span>.<span class="hljs-title function_">getComputedStyle</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>).<span class="hljs-property">fontSize</span>, <span class="hljs-number">10</span>)</span><br><span class="language-javascript">      <span class="hljs-comment">// android webview 里 html font-size 因设置系统字体大小受到影响</span></span><br><span class="language-javascript">      <span class="hljs-keyword">if</span> (realSize != <span class="hljs-built_in">parseFloat</span>(setSize.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">4</span>), <span class="hljs-number">10</span>)) &#123;</span><br><span class="language-javascript">        setSize = (setSize * setSize) / realSize</span><br><span class="language-javascript">        documentHTML.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span> = setSize + <span class="hljs-string">&#x27;px&#x27;</span></span><br><span class="language-javascript">      &#125;</span><br><span class="language-javascript">      <span class="hljs-comment">// 设置data-dpr属性，留作的css hack之用</span></span><br><span class="language-javascript">      pixelRatio = <span class="hljs-variable language_">global</span>.<span class="hljs-property">devicePixelRatio</span> === <span class="hljs-number">3</span> ? <span class="hljs-number">3</span> : <span class="hljs-number">2</span></span><br><span class="language-javascript">      documentHTML.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;data-dpr&#x27;</span>, pixelRatio)</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-title function_">setRootFont</span>()</span><br><span class="language-javascript">    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>, setRootFont, <span class="hljs-literal">false</span>)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>工程中加入postcss-pxtorem</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> postcss-pxtorem -D<br></code></pre></td></tr></table></figure>
@@ -502,6 +504,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -647,6 +673,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

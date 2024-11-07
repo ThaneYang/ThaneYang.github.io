@@ -33,6 +33,8 @@
 <meta name="twitter:image" content="https://img2020.cnblogs.com/blog/2253551/202012/2253551-20201216114702226-407762141.png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
   
   <title>小程序通过wxml-to-canvas生成分享海报 - live威的个人博客_前端博客</title>
 
@@ -94,11 +96,11 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 50vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>ThaneYang-山羊博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -194,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('http://yzwpic.weimayi.cn/img/d2035a76aaae09e50233eacb0b6ba7f4ded83e72760e5-fvlFxS.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -309,7 +311,7 @@
 <p>剩下的就是按照官方api进行开发就可以了</p>
 <p>index.vue</p>
 <p>页面引入组件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">wxml-to-canvas</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;widget&quot;</span> <span class="hljs-attr">:width</span>=<span class="hljs-string">&quot;canvasWidth&quot;</span> <span class="hljs-attr">:height</span>=<span class="hljs-string">&quot;canvasHeight&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">wxml-to-canvas</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> &#123; wxml, style &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./DomData.js&#x27;</span>)</span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">	</span><br><span class="language-javascript">  <span class="hljs-title function_">onLoad</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span><br><span class="language-javascript">      wx.<span class="hljs-title function_">showLoading</span>(&#123;<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;海报生成中...&#x27;</span>&#125;)</span><br><span class="language-javascript">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">selectComponent</span>(<span class="hljs-string">&#x27;.widget&#x27;</span>)</span><br><span class="language-javascript">      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">renderToCanvas</span>()</span><br><span class="language-javascript">    &#125;, <span class="hljs-number">1000</span>)</span><br><span class="language-javascript">  &#125;,</span><br><span class="language-javascript">  <span class="hljs-attr">methods</span>: &#123;</span><br><span class="language-javascript">      <span class="hljs-comment">// wxml 转 canvas</span></span><br><span class="language-javascript">      renderToCanvas () &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> _wxml = <span class="hljs-title function_">wxml</span>(<span class="hljs-string">&#x27;张三&#x27;</span>)</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> _style = <span class="hljs-title function_">style</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">screenWidth</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">canvasWidth</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">canvasHeight</span>)</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> p1 = <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">renderToCanvas</span>(&#123; <span class="hljs-attr">wxml</span>: _wxml, <span class="hljs-attr">style</span>: _style &#125;)</span><br><span class="language-javascript">        p1.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;海报生成成功&#x27;</span>);</span><br><span class="language-javascript">          wx.<span class="hljs-title function_">hideLoading</span>()</span><br><span class="language-javascript">        &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;生成失败&#x27;</span>)</span><br><span class="language-javascript">        &#125;)</span><br><span class="language-javascript">      &#125;,</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">wxml-to-canvas</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;widget&quot;</span> <span class="hljs-attr">:width</span>=<span class="hljs-string">&quot;canvasWidth&quot;</span> <span class="hljs-attr">:height</span>=<span class="hljs-string">&quot;canvasHeight&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">wxml-to-canvas</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> &#123; wxml, style &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./DomData.js&#x27;</span>)</span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">	</span><br><span class="language-javascript">  <span class="hljs-title function_">onLoad</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span><br><span class="language-javascript">      wx.<span class="hljs-title function_">showLoading</span>(&#123;<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;海报生成中...&#x27;</span>&#125;)</span><br><span class="language-javascript">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">selectComponent</span>(<span class="hljs-string">&#x27;.widget&#x27;</span>)</span><br><span class="language-javascript">      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">renderToCanvas</span>()</span><br><span class="language-javascript">    &#125;, <span class="hljs-number">1000</span>)</span><br><span class="language-javascript">  &#125;,</span><br><span class="language-javascript">  <span class="hljs-attr">methods</span>: &#123;</span><br><span class="language-javascript">      <span class="hljs-comment">// wxml 转 canvas</span></span><br><span class="language-javascript">      <span class="hljs-title function_">renderToCanvas</span> () &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> _wxml = <span class="hljs-title function_">wxml</span>(<span class="hljs-string">&#x27;张三&#x27;</span>)</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> _style = <span class="hljs-title function_">style</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">screenWidth</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">canvasWidth</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">canvasHeight</span>)</span><br><span class="language-javascript">        <span class="hljs-keyword">const</span> p1 = <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">renderToCanvas</span>(&#123; <span class="hljs-attr">wxml</span>: _wxml, <span class="hljs-attr">style</span>: _style &#125;)</span><br><span class="language-javascript">        p1.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;海报生成成功&#x27;</span>);</span><br><span class="language-javascript">          wx.<span class="hljs-title function_">hideLoading</span>()</span><br><span class="language-javascript">        &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;生成失败&#x27;</span>)</span><br><span class="language-javascript">        &#125;)</span><br><span class="language-javascript">      &#125;,</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -509,6 +511,30 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
   
   
 </div>
@@ -654,6 +680,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -13,27 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="live威">
-  <meta name="keywords" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+  <meta name="author" content="ThaneYang">
+  <meta name="keywords" content="前端个人博客,前端学习,javascript,vue,nodejs,感悟心得">
   
     <meta name="description" content="本文主要研究babel插件transform-react-jsx的使用 开始为了便于说明，首先我们来定义两个概念。  转译插件，转译插件是用来转译单一功能的插件，比如transform-es2015-arrow-functions，这个插件只负责转译es2015新增的箭头函数。 转译器，转译器是一系列转译插件的集合。比如babel-preset-es2015就包含了es2015新增语法的所有转译插">
 <meta property="og:type" content="article">
 <meta property="og:title" content="babel使用心得">
 <meta property="og:url" content="https://thaneyang.github.io/2018/10/babel%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97.html">
-<meta property="og:site_name" content="live威的个人博客_前端博客">
+<meta property="og:site_name" content="ThaneYang的个人前端博客">
 <meta property="og:description" content="本文主要研究babel插件transform-react-jsx的使用 开始为了便于说明，首先我们来定义两个概念。  转译插件，转译插件是用来转译单一功能的插件，比如transform-es2015-arrow-functions，这个插件只负责转译es2015新增的箭头函数。 转译器，转译器是一系列转译插件的集合。比如babel-preset-es2015就包含了es2015新增语法的所有转译插">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-08T04:02:19.000Z">
 <meta property="article:modified_time" content="2019-07-04T04:14:59.000Z">
-<meta property="article:author" content="live威">
-<meta property="article:tag" content="前端个人博客,前端学习,vue,nodejs,感悟心得">
+<meta property="article:author" content="ThaneYang">
+<meta property="article:tag" content="前端个人博客,前端学习,javascript,vue,nodejs,感悟心得">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>babel使用心得 - live威的个人博客_前端博客</title>
+  <title>babel使用心得 - ThaneYang的个人前端博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -292,7 +292,7 @@
 <p>安装后显示的package.json</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">&quot;devDependencies&quot;: &#123;<br>    &quot;babel-plugin-<span class="hljs-attribute">transform</span>-react-jsx&quot;: <span class="hljs-string">&quot;^6.24.1&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>对比了一下，两者代码虽然不一致，实现的功能是一致的</p>
-<p>唯一的区别就是<br>npm安装的可以单独作为插件使用，而github安装的则不行，主要因为版本的问题，因为@babel&#x2F;<a href="mailto:&#112;&#108;&#x75;&#103;&#x69;&#x6e;&#x2d;&#x74;&#114;&#97;&#x6e;&#x73;&#102;&#x6f;&#114;&#109;&#x2d;&#114;&#x65;&#x61;&#99;&#x74;&#x2d;&#x6a;&#x73;&#x78;&#64;&#x37;&#x2e;&#48;&#46;&#x30;">&#112;&#108;&#x75;&#103;&#x69;&#x6e;&#x2d;&#x74;&#114;&#97;&#x6e;&#x73;&#102;&#x6f;&#114;&#109;&#x2d;&#114;&#x65;&#x61;&#99;&#x74;&#x2d;&#x6a;&#x73;&#x78;&#64;&#x37;&#x2e;&#48;&#46;&#x30;</a>需要<a href="mailto:&#x62;&#97;&#98;&#101;&#108;&#x2d;&#99;&#111;&#114;&#101;&#x40;&#55;&#x2e;&#x30;&#46;&#x30;">&#x62;&#97;&#98;&#101;&#108;&#x2d;&#99;&#111;&#114;&#101;&#x40;&#55;&#x2e;&#x30;&#46;&#x30;</a>支持，而目前项目里是<a href="mailto:&#98;&#x61;&#98;&#101;&#108;&#x2d;&#x63;&#x6f;&#114;&#101;&#x40;&#54;&#46;&#x32;&#54;&#46;&#x33;">&#98;&#x61;&#98;&#101;&#108;&#x2d;&#x63;&#x6f;&#114;&#101;&#x40;&#54;&#46;&#x32;&#54;&#46;&#x33;</a></p>
+<p>唯一的区别就是<br>npm安装的可以单独作为插件使用，而github安装的则不行，主要因为版本的问题，因为@babel&#x2F;<a href="mailto:&#x70;&#x6c;&#117;&#103;&#x69;&#110;&#45;&#x74;&#x72;&#x61;&#x6e;&#x73;&#x66;&#111;&#x72;&#109;&#x2d;&#x72;&#101;&#x61;&#x63;&#x74;&#45;&#x6a;&#x73;&#x78;&#x40;&#55;&#46;&#48;&#46;&#48;">&#x70;&#x6c;&#117;&#103;&#x69;&#110;&#45;&#x74;&#x72;&#x61;&#x6e;&#x73;&#x66;&#111;&#x72;&#109;&#x2d;&#x72;&#101;&#x61;&#x63;&#x74;&#45;&#x6a;&#x73;&#x78;&#x40;&#55;&#46;&#48;&#46;&#48;</a>需要<a href="mailto:&#98;&#x61;&#x62;&#101;&#x6c;&#45;&#99;&#x6f;&#x72;&#x65;&#64;&#x37;&#46;&#x30;&#x2e;&#48;">&#98;&#x61;&#x62;&#101;&#x6c;&#45;&#99;&#x6f;&#x72;&#x65;&#64;&#x37;&#46;&#x30;&#x2e;&#48;</a>支持，而目前项目里是<a href="mailto:&#98;&#x61;&#98;&#101;&#x6c;&#45;&#99;&#111;&#x72;&#101;&#64;&#54;&#46;&#50;&#54;&#x2e;&#51;">&#98;&#x61;&#98;&#101;&#x6c;&#45;&#99;&#111;&#x72;&#101;&#64;&#54;&#46;&#50;&#54;&#x2e;&#51;</a></p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>: [<span class="hljs-string">&quot;<span class="hljs-variable">@babel</span>/plugin-transform-react-jsx&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
 <figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs prolog">&#123;<br>  <span class="hljs-string">&quot;plugins&quot;</span>:[<span class="hljs-string">&quot;transform-react-jsx&quot;</span>]<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>经过实测发现以下这种形式会报错</p>
@@ -366,7 +366,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>live威</div>
+          <div>ThaneYang</div>
         </div>
       
       

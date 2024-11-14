@@ -16,15 +16,15 @@
   <meta name="author" content="ThaneYang">
   <meta name="keywords" content="前端个人博客,前端学习,javascript,vue,nodejs,感悟心得">
   
-    <meta name="description" content="Vue 编译器架构的主要任务是将VUE模板转换为可执行的 JavaScript 代码。Vue.js 作为一个流行的前端框架，其核心特性之一就是能够通过简洁的模板语法来构建用户界面。这个过程涉及以下步骤：  模板到AST的转换（Parsing） 词法分析：Vue 编译器首先会对模板字符串进行词法分析，将其分解成一个个词法单元（Token）。这些词法单元代表了模板中的各种元素，如标签、属性、文本等。">
+    <meta name="description" content="前端个人博客,前端学习,javascript,vue,nodejs,感悟心得">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue编译器架构">
-<meta property="og:url" content="https://thaneyang.github.io/2024/06/vue%E7%BC%96%E8%AF%91%E6%A8%A1%E7%89%88%E7%9A%84%E8%BF%87%E7%A8%8B.html">
+<meta property="og:title" content="vue编译模版原理">
+<meta property="og:url" content="https://thaneyang.github.io/2024/06/vue%E7%BC%96%E8%AF%91%E6%A8%A1%E7%89%88%E5%8E%9F%E7%90%86.html">
 <meta property="og:site_name" content="ThaneYang的个人前端博客">
-<meta property="og:description" content="Vue 编译器架构的主要任务是将VUE模板转换为可执行的 JavaScript 代码。Vue.js 作为一个流行的前端框架，其核心特性之一就是能够通过简洁的模板语法来构建用户界面。这个过程涉及以下步骤：  模板到AST的转换（Parsing） 词法分析：Vue 编译器首先会对模板字符串进行词法分析，将其分解成一个个词法单元（Token）。这些词法单元代表了模板中的各种元素，如标签、属性、文本等。">
+<meta property="og:description" content="前端个人博客,前端学习,javascript,vue,nodejs,感悟心得">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-06T06:28:33.000Z">
-<meta property="article:modified_time" content="2024-11-06T07:51:38.700Z">
+<meta property="article:published_time" content="2024-06-07T07:09:22.000Z">
+<meta property="article:modified_time" content="2024-11-14T08:36:04.391Z">
 <meta property="article:author" content="ThaneYang">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>vue编译器架构 - ThaneYang的个人前端博客</title>
+  <title>vue编译模版原理 - ThaneYang的个人前端博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vue编译器架构"></span>
+            <span id="subtitle" data-typed-text="vue编译模版原理"></span>
           
         </div>
 
@@ -198,8 +198,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-06 14:28" pubdate>
-          2024年6月6日 下午
+        <time datetime="2024-06-07 15:09" pubdate>
+          2024年6月7日 下午
         </time>
       </span>
     
@@ -210,7 +210,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          788 字
+          0 字
         
       </span>
     
@@ -221,7 +221,7 @@
         
         
         
-          7 分钟
+          1 分钟
         
       </span>
     
@@ -259,42 +259,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue编译器架构</h1>
+            <h1 style="display: none">vue编译模版原理</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Vue 编译器架构的主要任务是<strong>将VUE模板转换为可执行的 JavaScript 代码</strong>。Vue.js 作为一个流行的前端框架，其核心特性之一就是能够通过简洁的模板语法来构建用户界面。这个过程涉及以下步骤：</p>
-<ol>
-<li><strong>模板到AST的转换（Parsing）</strong><ul>
-<li><strong>词法分析</strong>：Vue 编译器首先会对模板字符串进行词法分析，将其分解成一个个词法单元（Token）。这些词法单元代表了模板中的各种元素，如标签、属性、文本等。</li>
-<li><strong>语法分析</strong>：在词法分析的基础上，编译器会进行语法分析，将这些词法单元组织成一个抽象语法树（AST）。AST 是一种用节点表示程序结构的树状数据结构，每个节点代表模板中的一个具体元素。</li>
-</ul>
-</li>
-<li><strong>优化（Optimization）</strong>：<ul>
-<li>在生成 AST 后，Vue 编译器会对 AST 进行静态分析和优化，标记静态节点。静态节点是指在渲染过程中不会发生变化的节点。这一步有助于提高渲染性能。</li>
-</ul>
-</li>
-<li><strong>渲染函数代码生成（Code Generation）</strong>：<ul>
-<li>优化后的 AST 会被转换为渲染函数，这个函数能够返回虚拟 DOM 树，包括创建虚拟节点（VNode），以及对数据变化的响应逻辑。</li>
-<li><strong>响应式系统的集成</strong><ul>
-<li><strong>数据绑定</strong>：在编译过程中，Vue 编译器会将模板中的动态数据与 Vue 实例的数据进行绑定。这样，当数据发生变化时，视图会自动更新。</li>
-<li><strong>指令处理</strong>：Vue 模板中可以使用各种指令（如 v-if、v-for 等）来控制元素的渲染。编译器会识别这些指令，并生成相应的逻辑代码。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>静态提升（Static Hoisting）</strong>：<ul>
-<li>Vue 编译器还会进行静态提升，将静态节点提升到渲染函数外部，避免重复创建和销毁静态节点，从而提高性能。</li>
-</ul>
-</li>
-<li><strong>内联模板（Inline Templates）</strong>：<ul>
-<li>对于内联模板，Vue 编译器会将其直接嵌入到组件中，避免额外的编译步骤。</li>
-</ul>
-</li>
-</ol>
-<p>总的来说，Vue 编译器架构是一个高度模块化、灵活且高效的系统，通过将模板转换为高效的渲染函数，使得 Vue 应用能够以更高效的方式渲染和更新视图。</p>
-
+                
                 
               </div>
             
@@ -318,8 +288,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vue编译器架构</div>
-      <div>https://thaneyang.github.io/2024/06/vue编译模版的过程.html</div>
+      <div>vue编译模版原理</div>
+      <div>https://thaneyang.github.io/2024/06/vue编译模版原理.html</div>
     </div>
     <div class="license-meta">
       
@@ -331,7 +301,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月6日</div>
+          <div>2024年6月7日</div>
         </div>
       
       
